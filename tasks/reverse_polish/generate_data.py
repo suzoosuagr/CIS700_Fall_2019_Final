@@ -16,7 +16,7 @@ def generate_rev_polish(name, num_examples, debug=False, debug_freq = 1000):
     data = []
     for i in range(num_examples):
         exp = get_expressions()
-        if len(exp) > MAX_LENGTH:
+        while len(exp) > MAX_LENGTH:
             exp = get_expressions()
         if debug and i % debug_freq == 0:
             trace = Trace(exp, debug=True).trace
