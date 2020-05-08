@@ -11,11 +11,16 @@ import time
 from tensorboardX import SummaryWriter
 import random
 
-n_iter = 0
+train_n_iter = 0
+same_n_iter = 0
+diff_n_iter = 0
 
 def run_epoch(npi, mode, cur_data, writer):
     random.shuffle(cur_data)
-    global n_iter
+    global train_n_iter
+    global same_n_iter
+    global diff_n_iter
+
     if mode != 'train':
         npi.eval()
     else:
@@ -33,7 +38,7 @@ def run_epoch(npi, mode, cur_data, writer):
         maze_env = Maze_Env(start, end, maze)
 
         x, y = trace[:-1], trace[1:]
-
+        npi.reset_state(1)
         # step_def_loss, step_arg_loss, term_acc, prog_acc, = 0.0, 0.0, 0.0, 0.0
         # arg0_acc, arg1_acc, arg2_acc, num_args = 0.0, 0.0, 0.0, 0
         step_def_loss = 0.0
@@ -85,11 +90,11 @@ def run_epoch(npi, mode, cur_data, writer):
                 if pro_out_id == 0 or pro_out_id == 3 \
                         or pro_out_id == 4 or pro_out_id == 7:
                     optimizer.zero_grad()
-                    total_loss.backward()
+                    total_loss.backward(retain_graph=True)
                     optimizer.step()
                 else:  # ter_loss and pro_loss
                     optimizer.zero_grad()
-                    default_loss.backward()
+                    default_loss.backward(retain_graph=True)
                     optimizer.step()
 
             step_def_loss += default_loss.item()
@@ -101,11 +106,24 @@ def run_epoch(npi, mode, cur_data, writer):
                   .format(curr_epoch, maze_idx, step_def_loss / len(x), step_total_loss / len(x), ter_accs / len(x),
                           pro_accs / len(x)))
 
-        writer.add_scalar(mode + '/def_loss', step_def_loss / len(x), n_iter)
-        writer.add_scalar(mode + '/total_loss', step_total_loss / len(x), n_iter)
-        writer.add_scalar(mode + '/pro_accs', pro_accs / len(x), n_iter)
-        writer.add_scalar(mode + '/ter_accs', ter_accs / len(x), n_iter)
-        n_iter += 1
+        if mode == 'train':
+            writer.add_scalar(mode + '/def_loss', step_def_loss / len(x), train_n_iter)
+            writer.add_scalar(mode + '/total_loss', step_total_loss / len(x), train_n_iter)
+            writer.add_scalar(mode + '/pro_accs', pro_accs / len(x), train_n_iter)
+            writer.add_scalar(mode + '/ter_accs', ter_accs / len(x), train_n_iter)
+            train_n_iter += 1
+        elif mode == 'test_same':
+            writer.add_scalar(mode + '/def_loss', step_def_loss / len(x), same_n_iter)
+            writer.add_scalar(mode + '/total_loss', step_total_loss / len(x), same_n_iter)
+            writer.add_scalar(mode + '/pro_accs', pro_accs / len(x), same_n_iter)
+            writer.add_scalar(mode + '/ter_accs', ter_accs / len(x), same_n_iter)
+            same_n_iter += 1
+        elif mode == 'test_dif':
+            writer.add_scalar(mode + '/def_loss', step_def_loss / len(x), diff_n_iter)
+            writer.add_scalar(mode + '/total_loss', step_total_loss / len(x), diff_n_iter)
+            writer.add_scalar(mode + '/pro_accs', pro_accs / len(x), diff_n_iter)
+            writer.add_scalar(mode + '/ter_accs', ter_accs / len(x), diff_n_iter)
+            diff_n_iter += 1
 
         epoch_def_loss += step_def_loss
         epoch_total_loss += step_total_loss
@@ -124,7 +142,6 @@ def run_epoch(npi, mode, cur_data, writer):
     return (epoch_def_loss / epoch_step, epoch_total_loss / epoch_step,
             epoch_ter_accs / epoch_step, epoch_pro_accs / epoch_step)
 
-
 def print_net(network):
     print('---------- Networks initialized -------------')
     num_params = 0
@@ -136,8 +153,8 @@ def print_net(network):
 
 if __name__ == "__main__":
     start_epoch = 1
-    max_num_epochs = 30
-    exp_dir = os.path.join('tfboard', 'n1_5_300')
+    max_num_epochs = 20
+    exp_dir = os.path.join('tfboard', 'n3_7_100')
     if not os.path.exists(exp_dir):
         os.makedirs(exp_dir)
     writer = SummaryWriter(exp_dir)
@@ -153,28 +170,29 @@ if __name__ == "__main__":
     Best_results['pro_accs'] = 0.0
     Best_results['epoch_pro_accs'] = -1
 
-    TRAIN_DATA_PATH = 'Data/train_5_300.pik'
+    TRAIN_DATA_PATH = 'Data/train_7_100.pik'
     with open(TRAIN_DATA_PATH, 'rb', ) as f:
         train_data = pickle.load(f)
 
-    TEST_SAME_DATA_PATH = 'Data/test_5_100.pik'
+    TEST_SAME_DATA_PATH = 'Data/test_7_50.pik'
     with open(TEST_SAME_DATA_PATH, 'rb', ) as f:
         test_same_data = pickle.load(f)
 
-    TEST_DIF_DATA_PATH = 'Data/test_10_100.pik'
+    TEST_DIF_DATA_PATH = 'Data/test_10_50.pik'
     with open(TEST_DIF_DATA_PATH, 'rb', ) as f:
         test_dif_data = pickle.load(f)
 
+    CUDA_VISIBLE_DEVICES = '0'
+    print('Current GPU index: ' + CUDA_VISIBLE_DEVICES)
+    os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+    os.environ["CUDA_VISIBLE_DEVICES"] = CUDA_VISIBLE_DEVICES
+
     if torch.cuda.is_available():
         cuda_flag = True
-        CUDA_VISIBLE_DEVICES = '0'
-        print('Current GPU index: ' + CUDA_VISIBLE_DEVICES)
-        os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-        os.environ["CUDA_VISIBLE_DEVICES"] = CUDA_VISIBLE_DEVICES
     else:
         cuda_flag = False
 
-    maze_core = MazeCore()
+    maze_core = MazeCore(hidden_dim=100)
     npi = NPI(maze_core, CONFIG)
     if cuda_flag:
         npi = npi.cuda()
@@ -223,7 +241,7 @@ if __name__ == "__main__":
             Best_results['epoch_pro_accs'] = curr_epoch
 
         mode = 'test_dif'
-        run_epoch(npi, mode, test_dif_data, writer)
+        run_epoch(npi, mode, test_same_data, writer)
 
     save_path = os.path.join(exp_dir, 'npi_last.pth')
     npi.save_network(save_path, cuda_flag)
@@ -235,7 +253,6 @@ if __name__ == "__main__":
             print('Best %s for test same at %d epoch' % (key, val))
         else:
             print('Best %s for test same: %f' % (key, val))
-
 
 
 

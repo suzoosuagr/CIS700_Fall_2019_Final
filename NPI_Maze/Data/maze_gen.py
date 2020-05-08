@@ -119,12 +119,12 @@ def generate_data(prefix, num, size):
         pickle.dump(data, f)
 
 if __name__ == "__main__":
+    generate_data('train_5_50', 50, 5)
     generate_data('train_5_100', 100, 5)
-    generate_data('train_5_300', 300, 5)
-    generate_data('train_7_300', 300, 7)
-    generate_data('test_5_100', 100, 5)
-    generate_data('test_7_100', 100, 7)
-    generate_data('test_10_100', 100, 10)
+    generate_data('train_7_100', 100, 7)
+    generate_data('test_5_50', 50, 5)
+    generate_data('test_7_50', 50, 7)
+    generate_data('test_10_50', 50, 10)
 
     # DATA_PATH = 'train.pik'
     # with open(DATA_PATH, 'rb', ) as f:

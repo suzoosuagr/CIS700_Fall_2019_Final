@@ -30,13 +30,18 @@ class NPI(nn.Module):
 
         # self.arg_net = self.build_arg_net()
 
-    def init_state(self, batch_size):
+    def reset_state(self, batch_size):
         """
         Zero NPI Core LSTM Hidden States. LSTM States are represented as a Tuple, consisting of the
         LSTM C State, and the LSTM H State (in that order: (c, h)).
         """
-        hidden_state = torch.zeros(batch_size, 2 * self.npi_core_dim)
-        return hidden_state
+        # hidden_state = torch.zeros(self.npi_core_layers, batch_size, self.npi_core_dim)
+        self.h0 = torch.zeros(self.npi_core_layers, batch_size, self.npi_core_dim)
+        self.c0 = torch.zeros(self.npi_core_layers, batch_size, self.npi_core_dim)
+        # return hidden_state
+        if torch.cuda.is_available():
+            self.h0 = self.h0.cuda()
+            self.c0 = self.c0.cuda()
 
     def npi_core(self):
         network = torch.nn.LSTM(self.state_dim + self.pro_dim,
@@ -78,7 +83,9 @@ class NPI(nn.Module):
         merge_ft = merge_ft.permute(1, 0, 2)
         # hidden = self.init_state(b)
 
-        lstm_out, (hn, cn) = self.lstm(merge_ft)
+        lstm_out, (hn, cn) = self.lstm(merge_ft, (self.h0, self.c0))
+        self.h0 = hn
+        self.c0 = cn
         lstm_out = lstm_out[-1]
         ter_out = self.ter_net(lstm_out)
         key_out = self.pro_net(lstm_out).view((-1, 1, self.key_dim))
