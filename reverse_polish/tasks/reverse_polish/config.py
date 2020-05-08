@@ -119,7 +119,7 @@ class ScratchPad():
     def pop_read(self):
         s_top = self[self.stack_ptr]
         return s_top
- 
+
     def next(self):
         self.exp_ptr = (self.exp_ptr[0], self.exp_ptr[1] + 1)
         
@@ -173,6 +173,19 @@ class ScratchPad():
                 self[self.stack_ptr] = val
             if ptr == 1:   # Write Out
                 self[self.out_ptr] = val
+
+    def encode_args(self, args):
+        arg_vec = np.zeros((CONFIG["ARGUMENT_NUM"], CONFIG['ARGUMENT_DEPTH']), dtype=np.int32)
+        if len(args) > 0:
+            for i in range(CONFIG["ARGUMENT_NUM"]):
+                if i >= len(args):
+                    arg_vec[i][CONFIG["DEFAULT_ARGUMENT_VALUE"]] = 1
+                else:
+                    arg_vec[i][args[i]] = 1
+        else:
+            for i in range(CONFIG["ARGUMENT_NUM"]):
+                arg_vec[i][CONFIG["DEFAULT_ARGUMENT_VALUE"]] = 1
+        return arg_vec.flatten()
 
     def __getitem__(self, item):
         return self.scratchpad[item]
