@@ -1,0 +1,560 @@
+Current GPU index: 1
+---------- Networks initialized -------------
+NPI(
+  (core): MazeCore(
+    (encoder): Sequential(
+      (0): Linear(in_features=256, out_features=256, bias=True)
+      (1): ReLU()
+      (2): Linear(in_features=256, out_features=256, bias=True)
+      (3): ReLU()
+      (4): Linear(in_features=256, out_features=128, bias=True)
+    )
+    (pro_embedder): Embedding(8, 10)
+  )
+  (lstm): LSTM(138, 256, num_layers=2)
+  (ter_net): Sequential(
+    (0): Linear(in_features=256, out_features=128, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=128, out_features=2, bias=True)
+  )
+  (pro_net): Sequential(
+    (0): Linear(in_features=256, out_features=5, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=5, out_features=5, bias=True)
+  )
+  (arg_net_0): Sequential(
+    (0): Linear(in_features=256, out_features=22, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=22, out_features=22, bias=True)
+  )
+)
+NPI: Total number of parameters : 1.137 M
+-----------------------------------------------
+Epoch 01 Maze idx 000 Default Step Loss 2.547413, Total Step Loss 0.705165, Term Acc: 0.990099, Prog Acc: 0.396040
+Epoch 01 Maze idx 010 Default Step Loss 1.812616, Total Step Loss 0.540383, Term Acc: 0.995918, Prog Acc: 0.367347
+Epoch 01 Maze idx 020 Default Step Loss 1.665865, Total Step Loss 0.499587, Term Acc: 0.995122, Prog Acc: 0.424390
+Epoch 01 Maze idx 030 Default Step Loss 1.539511, Total Step Loss 0.465983, Term Acc: 0.992958, Prog Acc: 0.359155
+Epoch 01 Maze idx 040 Default Step Loss 1.357167, Total Step Loss 0.415651, Term Acc: 0.966667, Prog Acc: 0.566667
+Epoch 01 Maze idx 050 Default Step Loss 1.096100, Total Step Loss 0.350564, Term Acc: 0.987179, Prog Acc: 0.641026
+Epoch 01 Maze idx 060 Default Step Loss 0.788931, Total Step Loss 0.280753, Term Acc: 0.995633, Prog Acc: 0.729258
+Epoch 01 Maze idx 070 Default Step Loss 0.860475, Total Step Loss 0.293293, Term Acc: 0.973684, Prog Acc: 0.684211
+Epoch 01 Maze idx 080 Default Step Loss 0.663689, Total Step Loss 0.245743, Term Acc: 0.994949, Prog Acc: 0.757576
+Epoch 01 Maze idx 090 Default Step Loss 0.630073, Total Step Loss 0.240963, Term Acc: 0.990196, Prog Acc: 0.843137
+Mode: train For whole Epoch 01, Time Consum 1170.644354 Default Step Loss 1.184242, Total Step Loss 0.376998, Term Acc: 0.991770, Prog Acc: 0.623868
+===============================
+Epoch 01 Maze idx 000 Default Step Loss 0.454893, Total Step Loss 0.196981, Term Acc: 0.995122, Prog Acc: 0.892683
+Epoch 01 Maze idx 010 Default Step Loss 0.792960, Total Step Loss 0.279281, Term Acc: 0.967742, Prog Acc: 0.774194
+Epoch 01 Maze idx 020 Default Step Loss 0.462433, Total Step Loss 0.198669, Term Acc: 0.993939, Prog Acc: 0.890909
+Epoch 01 Maze idx 030 Default Step Loss 0.475481, Total Step Loss 0.201985, Term Acc: 0.995781, Prog Acc: 0.877637
+Epoch 01 Maze idx 040 Default Step Loss 0.506470, Total Step Loss 0.209409, Term Acc: 0.991525, Prog Acc: 0.915254
+Mode: test_same For whole Epoch 01, Time Consum 28.396394 Default Step Loss 0.465688, Total Step Loss 0.199564, Term Acc: 0.992910, Prog Acc: 0.896767
+===============================
+Epoch 01 Maze idx 000 Default Step Loss 0.440828, Total Step Loss 0.193108, Term Acc: 0.993671, Prog Acc: 0.930380
+Epoch 01 Maze idx 010 Default Step Loss 0.479744, Total Step Loss 0.203004, Term Acc: 0.992908, Prog Acc: 0.900709
+Epoch 01 Maze idx 020 Default Step Loss 0.450967, Total Step Loss 0.196151, Term Acc: 0.995652, Prog Acc: 0.904348
+Epoch 01 Maze idx 030 Default Step Loss 0.465775, Total Step Loss 0.200387, Term Acc: 0.995305, Prog Acc: 0.882629
+Epoch 01 Maze idx 040 Default Step Loss 0.437637, Total Step Loss 0.192670, Term Acc: 0.995918, Prog Acc: 0.910204
+Mode: test_dif For whole Epoch 01, Time Consum 28.375771 Default Step Loss 0.465688, Total Step Loss 0.199564, Term Acc: 0.992910, Prog Acc: 0.896767
+===============================
+Epoch 02 Maze idx 000 Default Step Loss 0.474133, Total Step Loss 0.198614, Term Acc: 0.990991, Prog Acc: 0.882883
+Epoch 02 Maze idx 010 Default Step Loss 0.344362, Total Step Loss 0.168971, Term Acc: 0.995918, Prog Acc: 0.918367
+Epoch 02 Maze idx 020 Default Step Loss 0.465578, Total Step Loss 0.196361, Term Acc: 0.966667, Prog Acc: 0.866667
+Epoch 02 Maze idx 030 Default Step Loss 0.307734, Total Step Loss 0.156480, Term Acc: 0.993289, Prog Acc: 0.959732
+Epoch 02 Maze idx 040 Default Step Loss 0.274719, Total Step Loss 0.149500, Term Acc: 0.983871, Prog Acc: 0.967742
+Epoch 02 Maze idx 050 Default Step Loss 0.249266, Total Step Loss 0.142571, Term Acc: 0.991453, Prog Acc: 0.974359
+Epoch 02 Maze idx 060 Default Step Loss 0.202186, Total Step Loss 0.132420, Term Acc: 0.994924, Prog Acc: 0.984772
+Epoch 02 Maze idx 070 Default Step Loss 0.418391, Total Step Loss 0.180925, Term Acc: 0.928571, Prog Acc: 0.928571
+Epoch 02 Maze idx 080 Default Step Loss 0.294069, Total Step Loss 0.151518, Term Acc: 0.978261, Prog Acc: 0.956522
+Epoch 02 Maze idx 090 Default Step Loss 0.155927, Total Step Loss 0.121043, Term Acc: 0.992481, Prog Acc: 0.992481
+Mode: train For whole Epoch 02, Time Consum 1175.379480 Default Step Loss 0.280453, Total Step Loss 0.151630, Term Acc: 0.991770, Prog Acc: 0.958683
+===============================
+Epoch 02 Maze idx 000 Default Step Loss 0.147320, Total Step Loss 0.120317, Term Acc: 0.993671, Prog Acc: 0.993671
+Epoch 02 Maze idx 010 Default Step Loss 0.224024, Total Step Loss 0.136764, Term Acc: 0.973684, Prog Acc: 0.973684
+Epoch 02 Maze idx 020 Default Step Loss 0.172119, Total Step Loss 0.125032, Term Acc: 0.992908, Prog Acc: 0.992908
+Epoch 02 Maze idx 030 Default Step Loss 0.153602, Total Step Loss 0.121631, Term Acc: 0.995305, Prog Acc: 0.995305
+Epoch 02 Maze idx 040 Default Step Loss 0.243713, Total Step Loss 0.137461, Term Acc: 0.985507, Prog Acc: 0.985507
+Mode: test_same For whole Epoch 02, Time Consum 26.965054 Default Step Loss 0.166126, Total Step Loss 0.124122, Term Acc: 0.992910, Prog Acc: 0.990641
+===============================
+Epoch 02 Maze idx 000 Default Step Loss 0.157569, Total Step Loss 0.121853, Term Acc: 0.994709, Prog Acc: 0.994709
+Epoch 02 Maze idx 010 Default Step Loss 0.159281, Total Step Loss 0.122038, Term Acc: 0.994505, Prog Acc: 0.994505
+Epoch 02 Maze idx 020 Default Step Loss 0.178540, Total Step Loss 0.125629, Term Acc: 0.992063, Prog Acc: 0.992063
+Epoch 02 Maze idx 030 Default Step Loss 0.211718, Total Step Loss 0.135286, Term Acc: 0.966667, Prog Acc: 0.966667
+Epoch 02 Maze idx 040 Default Step Loss 0.162299, Total Step Loss 0.123206, Term Acc: 0.991525, Prog Acc: 0.991525
+Mode: test_dif For whole Epoch 02, Time Consum 28.449039 Default Step Loss 0.166126, Total Step Loss 0.124122, Term Acc: 0.992910, Prog Acc: 0.990641
+===============================
+Epoch 03 Maze idx 000 Default Step Loss 0.161181, Total Step Loss 0.122086, Term Acc: 0.994253, Prog Acc: 0.994253
+Epoch 03 Maze idx 010 Default Step Loss 0.126969, Total Step Loss 0.116008, Term Acc: 0.994709, Prog Acc: 0.994709
+Epoch 03 Maze idx 020 Default Step Loss 0.298219, Total Step Loss 0.157824, Term Acc: 0.990196, Prog Acc: 0.941176
+Epoch 03 Maze idx 030 Default Step Loss 0.192401, Total Step Loss 0.126824, Term Acc: 0.992908, Prog Acc: 0.992908
+Epoch 03 Maze idx 040 Default Step Loss 0.134990, Total Step Loss 0.117967, Term Acc: 0.995122, Prog Acc: 0.990244
+Epoch 03 Maze idx 050 Default Step Loss 0.137841, Total Step Loss 0.117195, Term Acc: 0.995495, Prog Acc: 0.995495
+Epoch 03 Maze idx 060 Default Step Loss 0.192475, Total Step Loss 0.126213, Term Acc: 0.992958, Prog Acc: 0.992958
+Epoch 03 Maze idx 070 Default Step Loss 0.172861, Total Step Loss 0.122969, Term Acc: 0.993333, Prog Acc: 0.993333
+Epoch 03 Maze idx 080 Default Step Loss 0.188720, Total Step Loss 0.125705, Term Acc: 0.991525, Prog Acc: 0.991525
+Epoch 03 Maze idx 090 Default Step Loss 0.173410, Total Step Loss 0.123824, Term Acc: 0.989474, Prog Acc: 0.989474
+Mode: train For whole Epoch 03, Time Consum 1161.133082 Default Step Loss 0.175749, Total Step Loss 0.125543, Term Acc: 0.991770, Prog Acc: 0.986914
+===============================
+Epoch 03 Maze idx 000 Default Step Loss 0.228434, Total Step Loss 0.134057, Term Acc: 0.981132, Prog Acc: 0.981132
+Epoch 03 Maze idx 010 Default Step Loss 0.252550, Total Step Loss 0.141405, Term Acc: 0.995305, Prog Acc: 0.976526
+Epoch 03 Maze idx 020 Default Step Loss 0.270017, Total Step Loss 0.145811, Term Acc: 0.995798, Prog Acc: 0.970588
+Epoch 03 Maze idx 030 Default Step Loss 0.278079, Total Step Loss 0.147763, Term Acc: 0.992063, Prog Acc: 0.960317
+Epoch 03 Maze idx 040 Default Step Loss 0.297121, Total Step Loss 0.152318, Term Acc: 0.988235, Prog Acc: 0.964706
+Mode: test_same For whole Epoch 03, Time Consum 28.152568 Default Step Loss 0.274316, Total Step Loss 0.146666, Term Acc: 0.992910, Prog Acc: 0.971781
+===============================
+Epoch 03 Maze idx 000 Default Step Loss 0.328695, Total Step Loss 0.160754, Term Acc: 0.992958, Prog Acc: 0.957746
+Epoch 03 Maze idx 010 Default Step Loss 0.201866, Total Step Loss 0.128834, Term Acc: 0.994709, Prog Acc: 0.989418
+Epoch 03 Maze idx 020 Default Step Loss 0.246684, Total Step Loss 0.139856, Term Acc: 0.993711, Prog Acc: 0.968553
+Epoch 03 Maze idx 030 Default Step Loss 0.335960, Total Step Loss 0.162554, Term Acc: 0.995495, Prog Acc: 0.963964
+Epoch 03 Maze idx 040 Default Step Loss 0.252550, Total Step Loss 0.141405, Term Acc: 0.995305, Prog Acc: 0.976526
+Mode: test_dif For whole Epoch 03, Time Consum 26.635643 Default Step Loss 0.274316, Total Step Loss 0.146666, Term Acc: 0.992910, Prog Acc: 0.971781
+===============================
+Epoch 04 Maze idx 000 Default Step Loss 0.334720, Total Step Loss 0.160267, Term Acc: 0.981481, Prog Acc: 0.925926
+Epoch 04 Maze idx 010 Default Step Loss 0.231201, Total Step Loss 0.133381, Term Acc: 0.972973, Prog Acc: 0.972973
+Epoch 04 Maze idx 020 Default Step Loss 0.165873, Total Step Loss 0.122516, Term Acc: 0.988235, Prog Acc: 0.988235
+Epoch 04 Maze idx 030 Default Step Loss 0.199841, Total Step Loss 0.134279, Term Acc: 0.987013, Prog Acc: 0.974026
+Epoch 04 Maze idx 040 Default Step Loss 0.143337, Total Step Loss 0.120155, Term Acc: 0.968254, Prog Acc: 0.984127
+Epoch 04 Maze idx 050 Default Step Loss 0.150793, Total Step Loss 0.119554, Term Acc: 0.995122, Prog Acc: 0.985366
+Epoch 04 Maze idx 060 Default Step Loss 0.236095, Total Step Loss 0.137080, Term Acc: 0.936842, Prog Acc: 0.957895
+Epoch 04 Maze idx 070 Default Step Loss 0.163001, Total Step Loss 0.125115, Term Acc: 0.966667, Prog Acc: 0.966667
+Epoch 04 Maze idx 080 Default Step Loss 0.135516, Total Step Loss 0.115922, Term Acc: 0.991561, Prog Acc: 0.995781
+Epoch 04 Maze idx 090 Default Step Loss 0.289107, Total Step Loss 0.146415, Term Acc: 0.909091, Prog Acc: 0.954545
+Mode: train For whole Epoch 04, Time Consum 1174.220885 Default Step Loss 0.178150, Total Step Loss 0.125166, Term Acc: 0.979424, Prog Acc: 0.984609
+===============================
+Epoch 04 Maze idx 000 Default Step Loss 0.097828, Total Step Loss 0.110206, Term Acc: 0.993333, Prog Acc: 0.993333
+Epoch 04 Maze idx 010 Default Step Loss 0.077456, Total Step Loss 0.106706, Term Acc: 0.992958, Prog Acc: 0.992958
+Epoch 04 Maze idx 020 Default Step Loss 0.351815, Total Step Loss 0.170735, Term Acc: 0.967742, Prog Acc: 0.903226
+Epoch 04 Maze idx 030 Default Step Loss 0.098833, Total Step Loss 0.110225, Term Acc: 0.995633, Prog Acc: 0.995633
+Epoch 04 Maze idx 040 Default Step Loss 0.108221, Total Step Loss 0.112472, Term Acc: 0.995918, Prog Acc: 0.991837
+Mode: test_same For whole Epoch 04, Time Consum 28.650222 Default Step Loss 0.117325, Total Step Loss 0.113751, Term Acc: 0.992910, Prog Acc: 0.991917
+===============================
+Epoch 04 Maze idx 000 Default Step Loss 0.104542, Total Step Loss 0.111218, Term Acc: 0.993377, Prog Acc: 0.993377
+Epoch 04 Maze idx 010 Default Step Loss 0.114000, Total Step Loss 0.112630, Term Acc: 0.995633, Prog Acc: 0.995633
+Epoch 04 Maze idx 020 Default Step Loss 0.102565, Total Step Loss 0.110816, Term Acc: 0.995305, Prog Acc: 0.995305
+Epoch 04 Maze idx 030 Default Step Loss 0.143361, Total Step Loss 0.118004, Term Acc: 0.992063, Prog Acc: 0.992063
+Epoch 04 Maze idx 040 Default Step Loss 0.120982, Total Step Loss 0.114164, Term Acc: 0.995781, Prog Acc: 0.995781
+Mode: test_dif For whole Epoch 04, Time Consum 30.008494 Default Step Loss 0.117325, Total Step Loss 0.113751, Term Acc: 0.992910, Prog Acc: 0.991917
+===============================
+Epoch 05 Maze idx 000 Default Step Loss 0.135366, Total Step Loss 0.116358, Term Acc: 0.989247, Prog Acc: 0.989247
+Epoch 05 Maze idx 010 Default Step Loss 0.160961, Total Step Loss 0.120777, Term Acc: 0.992908, Prog Acc: 0.992908
+Epoch 05 Maze idx 020 Default Step Loss 0.184239, Total Step Loss 0.127315, Term Acc: 0.993333, Prog Acc: 0.973333
+Epoch 05 Maze idx 030 Default Step Loss 0.251014, Total Step Loss 0.134630, Term Acc: 0.983607, Prog Acc: 0.983607
+Epoch 05 Maze idx 040 Default Step Loss 0.170369, Total Step Loss 0.128233, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 05 Maze idx 050 Default Step Loss 0.162751, Total Step Loss 0.120461, Term Acc: 0.954315, Prog Acc: 0.989848
+Epoch 05 Maze idx 060 Default Step Loss 0.137792, Total Step Loss 0.119022, Term Acc: 0.974359, Prog Acc: 0.974359
+Epoch 05 Maze idx 070 Default Step Loss 0.182112, Total Step Loss 0.122325, Term Acc: 0.931624, Prog Acc: 0.982906
+Epoch 05 Maze idx 080 Default Step Loss 0.260105, Total Step Loss 0.135492, Term Acc: 0.952941, Prog Acc: 0.988235
+Epoch 05 Maze idx 090 Default Step Loss 0.101644, Total Step Loss 0.111344, Term Acc: 0.992063, Prog Acc: 0.984127
+Mode: train For whole Epoch 05, Time Consum 1128.356068 Default Step Loss 0.150900, Total Step Loss 0.119710, Term Acc: 0.981481, Prog Acc: 0.985761
+===============================
+Epoch 05 Maze idx 000 Default Step Loss 0.183549, Total Step Loss 0.125520, Term Acc: 0.980132, Prog Acc: 0.980132
+Epoch 05 Maze idx 010 Default Step Loss 0.150890, Total Step Loss 0.117830, Term Acc: 0.971429, Prog Acc: 0.979592
+Epoch 05 Maze idx 020 Default Step Loss 0.226486, Total Step Loss 0.131073, Term Acc: 0.967742, Prog Acc: 0.983871
+Epoch 05 Maze idx 030 Default Step Loss 0.110162, Total Step Loss 0.114126, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 05 Maze idx 040 Default Step Loss 0.316679, Total Step Loss 0.146775, Term Acc: 0.945946, Prog Acc: 0.972973
+Mode: test_same For whole Epoch 05, Time Consum 13.800171 Default Step Loss 0.194687, Total Step Loss 0.126155, Term Acc: 0.960579, Prog Acc: 0.971497
+===============================
+Epoch 05 Maze idx 000 Default Step Loss 0.217299, Total Step Loss 0.130299, Term Acc: 0.949580, Prog Acc: 0.957983
+Epoch 05 Maze idx 010 Default Step Loss 0.138092, Total Step Loss 0.119187, Term Acc: 0.967742, Prog Acc: 1.000000
+Epoch 05 Maze idx 020 Default Step Loss 0.110162, Total Step Loss 0.114126, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 05 Maze idx 030 Default Step Loss 0.204618, Total Step Loss 0.126883, Term Acc: 0.952381, Prog Acc: 0.968254
+Epoch 05 Maze idx 040 Default Step Loss 0.230079, Total Step Loss 0.133208, Term Acc: 0.957627, Prog Acc: 0.966102
+Mode: test_dif For whole Epoch 05, Time Consum 13.909794 Default Step Loss 0.194687, Total Step Loss 0.126155, Term Acc: 0.960579, Prog Acc: 0.971497
+===============================
+Epoch 06 Maze idx 000 Default Step Loss 0.173067, Total Step Loss 0.122376, Term Acc: 0.957143, Prog Acc: 0.985714
+Epoch 06 Maze idx 010 Default Step Loss 0.033916, Total Step Loss 0.100055, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 06 Maze idx 020 Default Step Loss 0.438020, Total Step Loss 0.173243, Term Acc: 0.928571, Prog Acc: 0.928571
+Epoch 06 Maze idx 030 Default Step Loss 0.460709, Total Step Loss 0.171093, Term Acc: 0.909091, Prog Acc: 0.954545
+Epoch 06 Maze idx 040 Default Step Loss 0.061432, Total Step Loss 0.106092, Term Acc: 1.000000, Prog Acc: 0.987342
+Epoch 06 Maze idx 050 Default Step Loss 0.151339, Total Step Loss 0.117968, Term Acc: 0.972973, Prog Acc: 0.981982
+Epoch 06 Maze idx 060 Default Step Loss 0.159800, Total Step Loss 0.119455, Term Acc: 0.964072, Prog Acc: 0.982036
+Epoch 06 Maze idx 070 Default Step Loss 0.096792, Total Step Loss 0.109129, Term Acc: 0.987179, Prog Acc: 1.000000
+Epoch 06 Maze idx 080 Default Step Loss 0.118575, Total Step Loss 0.115196, Term Acc: 0.991525, Prog Acc: 0.983051
+Epoch 06 Maze idx 090 Default Step Loss 0.252761, Total Step Loss 0.133773, Term Acc: 0.945946, Prog Acc: 1.000000
+Mode: train For whole Epoch 06, Time Consum 1055.295303 Default Step Loss 0.126101, Total Step Loss 0.114622, Term Acc: 0.980576, Prog Acc: 0.986584
+===============================
+Epoch 06 Maze idx 000 Default Step Loss 0.051086, Total Step Loss 0.101949, Term Acc: 0.995495, Prog Acc: 0.995495
+Epoch 06 Maze idx 010 Default Step Loss 0.201583, Total Step Loss 0.125779, Term Acc: 0.966245, Prog Acc: 0.962025
+Epoch 06 Maze idx 020 Default Step Loss 0.210344, Total Step Loss 0.129229, Term Acc: 0.955556, Prog Acc: 0.955556
+Epoch 06 Maze idx 030 Default Step Loss 0.659451, Total Step Loss 0.204850, Term Acc: 0.928571, Prog Acc: 0.928571
+Epoch 06 Maze idx 040 Default Step Loss 0.173863, Total Step Loss 0.124109, Term Acc: 0.967742, Prog Acc: 0.967742
+Mode: test_same For whole Epoch 06, Time Consum 13.663580 Default Step Loss 0.138361, Total Step Loss 0.116016, Term Acc: 0.974617, Prog Acc: 0.981566
+===============================
+Epoch 06 Maze idx 000 Default Step Loss 0.128065, Total Step Loss 0.114711, Term Acc: 0.983051, Prog Acc: 0.983051
+Epoch 06 Maze idx 010 Default Step Loss 0.659451, Total Step Loss 0.204850, Term Acc: 0.928571, Prog Acc: 0.928571
+Epoch 06 Maze idx 020 Default Step Loss 0.230790, Total Step Loss 0.131542, Term Acc: 0.956522, Prog Acc: 0.956522
+Epoch 06 Maze idx 030 Default Step Loss 0.173863, Total Step Loss 0.124109, Term Acc: 0.967742, Prog Acc: 0.967742
+Epoch 06 Maze idx 040 Default Step Loss 0.247809, Total Step Loss 0.134330, Term Acc: 0.944444, Prog Acc: 0.962963
+Mode: test_dif For whole Epoch 06, Time Consum 13.450205 Default Step Loss 0.138361, Total Step Loss 0.116016, Term Acc: 0.974617, Prog Acc: 0.981566
+===============================
+Epoch 07 Maze idx 000 Default Step Loss 0.087040, Total Step Loss 0.107597, Term Acc: 0.989848, Prog Acc: 0.994924
+Epoch 07 Maze idx 010 Default Step Loss 0.141045, Total Step Loss 0.114598, Term Acc: 0.960699, Prog Acc: 0.995633
+Epoch 07 Maze idx 020 Default Step Loss 0.112358, Total Step Loss 0.110699, Term Acc: 0.983516, Prog Acc: 0.994505
+Epoch 07 Maze idx 030 Default Step Loss 0.047722, Total Step Loss 0.104343, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 07 Maze idx 040 Default Step Loss 0.104912, Total Step Loss 0.113105, Term Acc: 0.987755, Prog Acc: 0.979592
+Epoch 07 Maze idx 050 Default Step Loss 0.104833, Total Step Loss 0.110329, Term Acc: 0.971429, Prog Acc: 0.985714
+Epoch 07 Maze idx 060 Default Step Loss 0.099626, Total Step Loss 0.115545, Term Acc: 0.994475, Prog Acc: 0.977901
+Epoch 07 Maze idx 070 Default Step Loss 0.034688, Total Step Loss 0.098774, Term Acc: 0.994505, Prog Acc: 1.000000
+Epoch 07 Maze idx 080 Default Step Loss 0.020570, Total Step Loss 0.096550, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 07 Maze idx 090 Default Step Loss 0.088512, Total Step Loss 0.107441, Term Acc: 0.987013, Prog Acc: 1.000000
+Mode: train For whole Epoch 07, Time Consum 1030.135319 Default Step Loss 0.093780, Total Step Loss 0.109150, Term Acc: 0.986255, Prog Acc: 0.989300
+===============================
+Epoch 07 Maze idx 000 Default Step Loss 0.272001, Total Step Loss 0.138658, Term Acc: 0.977778, Prog Acc: 0.977778
+Epoch 07 Maze idx 010 Default Step Loss 0.069171, Total Step Loss 0.105428, Term Acc: 0.986900, Prog Acc: 0.986900
+Epoch 07 Maze idx 020 Default Step Loss 0.541897, Total Step Loss 0.189340, Term Acc: 0.928571, Prog Acc: 0.928571
+Epoch 07 Maze idx 030 Default Step Loss 0.142252, Total Step Loss 0.118918, Term Acc: 0.982609, Prog Acc: 0.978261
+Epoch 07 Maze idx 040 Default Step Loss 0.276108, Total Step Loss 0.140717, Term Acc: 0.971014, Prog Acc: 0.956522
+Mode: test_same For whole Epoch 07, Time Consum 13.767786 Default Step Loss 0.090853, Total Step Loss 0.109258, Term Acc: 0.989648, Prog Acc: 0.987663
+===============================
+Epoch 07 Maze idx 000 Default Step Loss 0.276108, Total Step Loss 0.140717, Term Acc: 0.971014, Prog Acc: 0.956522
+Epoch 07 Maze idx 010 Default Step Loss 0.393287, Total Step Loss 0.157277, Term Acc: 0.972973, Prog Acc: 0.972973
+Epoch 07 Maze idx 020 Default Step Loss 0.082640, Total Step Loss 0.108098, Term Acc: 0.991525, Prog Acc: 0.991525
+Epoch 07 Maze idx 030 Default Step Loss 0.157948, Total Step Loss 0.118858, Term Acc: 0.979592, Prog Acc: 0.983673
+Epoch 07 Maze idx 040 Default Step Loss 0.041765, Total Step Loss 0.102188, Term Acc: 1.000000, Prog Acc: 0.992537
+Mode: test_dif For whole Epoch 07, Time Consum 13.774157 Default Step Loss 0.090853, Total Step Loss 0.109258, Term Acc: 0.989648, Prog Acc: 0.987663
+===============================
+Epoch 08 Maze idx 000 Default Step Loss 0.086061, Total Step Loss 0.108665, Term Acc: 0.990654, Prog Acc: 0.985981
+Epoch 08 Maze idx 010 Default Step Loss 0.007960, Total Step Loss 0.094696, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 08 Maze idx 020 Default Step Loss 0.037425, Total Step Loss 0.101409, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 08 Maze idx 030 Default Step Loss 0.087759, Total Step Loss 0.107741, Term Acc: 0.985714, Prog Acc: 0.971429
+Epoch 08 Maze idx 040 Default Step Loss 0.035481, Total Step Loss 0.098203, Term Acc: 0.995918, Prog Acc: 1.000000
+Epoch 08 Maze idx 050 Default Step Loss 0.109820, Total Step Loss 0.115740, Term Acc: 0.992063, Prog Acc: 0.984127
+Epoch 08 Maze idx 060 Default Step Loss 0.116676, Total Step Loss 0.110485, Term Acc: 0.975610, Prog Acc: 0.985366
+Epoch 08 Maze idx 070 Default Step Loss 0.057746, Total Step Loss 0.101818, Term Acc: 0.987013, Prog Acc: 1.000000
+Epoch 08 Maze idx 080 Default Step Loss 0.039826, Total Step Loss 0.100031, Term Acc: 0.992958, Prog Acc: 0.992958
+Epoch 08 Maze idx 090 Default Step Loss 0.086258, Total Step Loss 0.107681, Term Acc: 0.990196, Prog Acc: 0.990196
+Mode: train For whole Epoch 08, Time Consum 1077.410179 Default Step Loss 0.079434, Total Step Loss 0.106072, Term Acc: 0.988560, Prog Acc: 0.991358
+===============================
+Epoch 08 Maze idx 000 Default Step Loss 0.024335, Total Step Loss 0.098078, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 08 Maze idx 010 Default Step Loss 0.113654, Total Step Loss 0.116681, Term Acc: 1.000000, Prog Acc: 0.928571
+Epoch 08 Maze idx 020 Default Step Loss 0.070815, Total Step Loss 0.103355, Term Acc: 0.995122, Prog Acc: 0.995122
+Epoch 08 Maze idx 030 Default Step Loss 0.086776, Total Step Loss 0.105481, Term Acc: 0.983051, Prog Acc: 1.000000
+Epoch 08 Maze idx 040 Default Step Loss 0.191296, Total Step Loss 0.123510, Term Acc: 0.978261, Prog Acc: 0.978261
+Mode: test_same For whole Epoch 08, Time Consum 13.580189 Default Step Loss 0.122263, Total Step Loss 0.112039, Term Acc: 0.984685, Prog Acc: 0.988088
+===============================
+Epoch 08 Maze idx 000 Default Step Loss 0.208110, Total Step Loss 0.124969, Term Acc: 0.973799, Prog Acc: 0.978166
+Epoch 08 Maze idx 010 Default Step Loss 0.091064, Total Step Loss 0.107202, Term Acc: 0.983051, Prog Acc: 0.991525
+Epoch 08 Maze idx 020 Default Step Loss 0.191296, Total Step Loss 0.123510, Term Acc: 0.978261, Prog Acc: 0.978261
+Epoch 08 Maze idx 030 Default Step Loss 0.115787, Total Step Loss 0.111395, Term Acc: 0.981651, Prog Acc: 0.990826
+Epoch 08 Maze idx 040 Default Step Loss 0.095708, Total Step Loss 0.107349, Term Acc: 0.991304, Prog Acc: 0.991304
+Mode: test_dif For whole Epoch 08, Time Consum 13.891556 Default Step Loss 0.122263, Total Step Loss 0.112039, Term Acc: 0.984685, Prog Acc: 0.988088
+===============================
+Epoch 09 Maze idx 000 Default Step Loss 0.023727, Total Step Loss 0.100233, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 09 Maze idx 010 Default Step Loss 0.045490, Total Step Loss 0.101068, Term Acc: 0.985507, Prog Acc: 0.985507
+Epoch 09 Maze idx 020 Default Step Loss 0.097436, Total Step Loss 0.108216, Term Acc: 0.985981, Prog Acc: 0.990654
+Epoch 09 Maze idx 030 Default Step Loss 0.012477, Total Step Loss 0.095089, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 09 Maze idx 040 Default Step Loss 0.004408, Total Step Loss 0.093749, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 09 Maze idx 050 Default Step Loss 0.088368, Total Step Loss 0.110303, Term Acc: 0.994536, Prog Acc: 0.983607
+Epoch 09 Maze idx 060 Default Step Loss 0.020955, Total Step Loss 0.096432, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 09 Maze idx 070 Default Step Loss 0.009636, Total Step Loss 0.096906, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 09 Maze idx 080 Default Step Loss 0.002738, Total Step Loss 0.093573, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 09 Maze idx 090 Default Step Loss 0.001918, Total Step Loss 0.093045, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: train For whole Epoch 09, Time Consum 1057.248273 Default Step Loss 0.040402, Total Step Loss 0.099443, Term Acc: 0.995638, Prog Acc: 0.996049
+===============================
+Epoch 09 Maze idx 000 Default Step Loss 0.199713, Total Step Loss 0.128466, Term Acc: 0.972973, Prog Acc: 0.972973
+Epoch 09 Maze idx 010 Default Step Loss 0.075654, Total Step Loss 0.106005, Term Acc: 0.990826, Prog Acc: 0.990826
+Epoch 09 Maze idx 020 Default Step Loss 0.206891, Total Step Loss 0.125162, Term Acc: 0.975510, Prog Acc: 0.983673
+Epoch 09 Maze idx 030 Default Step Loss 0.134536, Total Step Loss 0.114057, Term Acc: 0.982533, Prog Acc: 0.982533
+Epoch 09 Maze idx 040 Default Step Loss 0.063812, Total Step Loss 0.104768, Term Acc: 0.988235, Prog Acc: 0.988235
+Mode: test_same For whole Epoch 09, Time Consum 13.751171 Default Step Loss 0.095602, Total Step Loss 0.108751, Term Acc: 0.988798, Prog Acc: 0.989365
+===============================
+Epoch 09 Maze idx 000 Default Step Loss 0.092355, Total Step Loss 0.110508, Term Acc: 0.977778, Prog Acc: 0.977778
+Epoch 09 Maze idx 010 Default Step Loss 0.039089, Total Step Loss 0.099151, Term Acc: 0.994709, Prog Acc: 0.989418
+Epoch 09 Maze idx 020 Default Step Loss 0.027780, Total Step Loss 0.097077, Term Acc: 0.991525, Prog Acc: 1.000000
+Epoch 09 Maze idx 030 Default Step Loss 0.199713, Total Step Loss 0.128466, Term Acc: 0.972973, Prog Acc: 0.972973
+Epoch 09 Maze idx 040 Default Step Loss 0.040103, Total Step Loss 0.099073, Term Acc: 0.991266, Prog Acc: 0.995633
+Mode: test_dif For whole Epoch 09, Time Consum 13.645540 Default Step Loss 0.095602, Total Step Loss 0.108751, Term Acc: 0.988798, Prog Acc: 0.989365
+===============================
+Epoch 10 Maze idx 000 Default Step Loss 0.050579, Total Step Loss 0.104347, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 10 Maze idx 010 Default Step Loss 0.040350, Total Step Loss 0.099003, Term Acc: 0.992908, Prog Acc: 0.992908
+Epoch 10 Maze idx 020 Default Step Loss 0.106729, Total Step Loss 0.109520, Term Acc: 0.990654, Prog Acc: 0.990654
+Epoch 10 Maze idx 030 Default Step Loss 0.006214, Total Step Loss 0.094667, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 10 Maze idx 040 Default Step Loss 0.017336, Total Step Loss 0.096072, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 10 Maze idx 050 Default Step Loss 0.010132, Total Step Loss 0.093939, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 10 Maze idx 060 Default Step Loss 0.003633, Total Step Loss 0.095066, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 10 Maze idx 070 Default Step Loss 0.071550, Total Step Loss 0.103406, Term Acc: 0.989011, Prog Acc: 0.994505
+Epoch 10 Maze idx 080 Default Step Loss 0.018231, Total Step Loss 0.095692, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 10 Maze idx 090 Default Step Loss 0.008789, Total Step Loss 0.094276, Term Acc: 1.000000, Prog Acc: 0.995918
+Mode: train For whole Epoch 10, Time Consum 1059.697841 Default Step Loss 0.032737, Total Step Loss 0.097906, Term Acc: 0.995802, Prog Acc: 0.996708
+===============================
+Epoch 10 Maze idx 000 Default Step Loss 0.021099, Total Step Loss 0.096817, Term Acc: 1.000000, Prog Acc: 0.991525
+Epoch 10 Maze idx 010 Default Step Loss 0.123996, Total Step Loss 0.113642, Term Acc: 0.988372, Prog Acc: 0.988372
+Epoch 10 Maze idx 020 Default Step Loss 0.286179, Total Step Loss 0.141717, Term Acc: 0.972973, Prog Acc: 0.972973
+Epoch 10 Maze idx 030 Default Step Loss 0.091208, Total Step Loss 0.107525, Term Acc: 0.992537, Prog Acc: 0.992537
+Epoch 10 Maze idx 040 Default Step Loss 0.018022, Total Step Loss 0.097292, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: test_same For whole Epoch 10, Time Consum 13.687683 Default Step Loss 0.083471, Total Step Loss 0.106271, Term Acc: 0.991492, Prog Acc: 0.991634
+===============================
+Epoch 10 Maze idx 000 Default Step Loss 0.018756, Total Step Loss 0.094923, Term Acc: 0.995305, Prog Acc: 1.000000
+Epoch 10 Maze idx 010 Default Step Loss 0.024470, Total Step Loss 0.096838, Term Acc: 1.000000, Prog Acc: 0.993377
+Epoch 10 Maze idx 020 Default Step Loss 0.003111, Total Step Loss 0.092887, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 10 Maze idx 030 Default Step Loss 0.012952, Total Step Loss 0.094541, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 10 Maze idx 040 Default Step Loss 0.010437, Total Step Loss 0.095698, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: test_dif For whole Epoch 10, Time Consum 13.685727 Default Step Loss 0.083471, Total Step Loss 0.106271, Term Acc: 0.991492, Prog Acc: 0.991634
+===============================
+Epoch 11 Maze idx 000 Default Step Loss 0.002964, Total Step Loss 0.092632, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 11 Maze idx 010 Default Step Loss 0.001074, Total Step Loss 0.092572, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 11 Maze idx 020 Default Step Loss 0.001677, Total Step Loss 0.094710, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 11 Maze idx 030 Default Step Loss 0.000643, Total Step Loss 0.092480, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 11 Maze idx 040 Default Step Loss 0.001510, Total Step Loss 0.092862, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 11 Maze idx 050 Default Step Loss 0.001061, Total Step Loss 0.094165, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 11 Maze idx 060 Default Step Loss 0.002908, Total Step Loss 0.093052, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 11 Maze idx 070 Default Step Loss 0.004068, Total Step Loss 0.093601, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 11 Maze idx 080 Default Step Loss 0.000705, Total Step Loss 0.092355, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 11 Maze idx 090 Default Step Loss 0.014302, Total Step Loss 0.094423, Term Acc: 0.995122, Prog Acc: 0.995122
+Mode: train For whole Epoch 11, Time Consum 1047.880311 Default Step Loss 0.011018, Total Step Loss 0.094296, Term Acc: 0.998765, Prog Acc: 0.998765
+===============================
+Epoch 11 Maze idx 000 Default Step Loss 0.241948, Total Step Loss 0.134633, Term Acc: 0.986957, Prog Acc: 0.978261
+Epoch 11 Maze idx 010 Default Step Loss 0.012418, Total Step Loss 0.095519, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 11 Maze idx 020 Default Step Loss 0.001884, Total Step Loss 0.092571, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 11 Maze idx 030 Default Step Loss 0.084299, Total Step Loss 0.106026, Term Acc: 0.991304, Prog Acc: 0.991304
+Epoch 11 Maze idx 040 Default Step Loss 0.143243, Total Step Loss 0.116250, Term Acc: 0.988372, Prog Acc: 0.988372
+Mode: test_same For whole Epoch 11, Time Consum 13.782889 Default Step Loss 0.107341, Total Step Loss 0.110389, Term Acc: 0.991775, Prog Acc: 0.988798
+===============================
+Epoch 11 Maze idx 000 Default Step Loss 0.055861, Total Step Loss 0.103431, Term Acc: 0.981132, Prog Acc: 0.981132
+Epoch 11 Maze idx 010 Default Step Loss 0.320142, Total Step Loss 0.143392, Term Acc: 0.983871, Prog Acc: 0.983871
+Epoch 11 Maze idx 020 Default Step Loss 0.000993, Total Step Loss 0.093707, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 11 Maze idx 030 Default Step Loss 0.013089, Total Step Loss 0.094568, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 11 Maze idx 040 Default Step Loss 0.012305, Total Step Loss 0.094534, Term Acc: 1.000000, Prog Acc: 0.994709
+Mode: test_dif For whole Epoch 11, Time Consum 15.944813 Default Step Loss 0.107341, Total Step Loss 0.110389, Term Acc: 0.991775, Prog Acc: 0.988798
+===============================
+Epoch 12 Maze idx 000 Default Step Loss 0.001007, Total Step Loss 0.093515, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 12 Maze idx 010 Default Step Loss 0.000479, Total Step Loss 0.092390, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 12 Maze idx 020 Default Step Loss 0.000492, Total Step Loss 0.092367, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 12 Maze idx 030 Default Step Loss 0.001035, Total Step Loss 0.094464, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 12 Maze idx 040 Default Step Loss 0.006778, Total Step Loss 0.095456, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 12 Maze idx 050 Default Step Loss 0.245357, Total Step Loss 0.134282, Term Acc: 0.966667, Prog Acc: 0.966667
+Epoch 12 Maze idx 060 Default Step Loss 0.002554, Total Step Loss 0.093528, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 12 Maze idx 070 Default Step Loss 0.000687, Total Step Loss 0.092158, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 12 Maze idx 080 Default Step Loss 0.000543, Total Step Loss 0.092447, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 12 Maze idx 090 Default Step Loss 0.000344, Total Step Loss 0.092086, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: train For whole Epoch 12, Time Consum 999.632766 Default Step Loss 0.005631, Total Step Loss 0.093141, Term Acc: 0.999177, Prog Acc: 0.999424
+===============================
+Epoch 12 Maze idx 000 Default Step Loss 0.158380, Total Step Loss 0.122610, Term Acc: 0.991561, Prog Acc: 0.983122
+Epoch 12 Maze idx 010 Default Step Loss 0.036087, Total Step Loss 0.101238, Term Acc: 1.000000, Prog Acc: 0.992537
+Epoch 12 Maze idx 020 Default Step Loss 0.028359, Total Step Loss 0.096679, Term Acc: 0.995633, Prog Acc: 0.995633
+Epoch 12 Maze idx 030 Default Step Loss 0.291520, Total Step Loss 0.137339, Term Acc: 0.989362, Prog Acc: 0.989362
+Epoch 12 Maze idx 040 Default Step Loss 0.639574, Total Step Loss 0.192444, Term Acc: 0.972973, Prog Acc: 0.972973
+Mode: test_same For whole Epoch 12, Time Consum 13.270551 Default Step Loss 0.120702, Total Step Loss 0.111872, Term Acc: 0.993052, Prog Acc: 0.990499
+===============================
+Epoch 12 Maze idx 000 Default Step Loss 0.116875, Total Step Loss 0.113089, Term Acc: 0.973684, Prog Acc: 0.973684
+Epoch 12 Maze idx 010 Default Step Loss 0.408692, Total Step Loss 0.155911, Term Acc: 0.983871, Prog Acc: 0.983871
+Epoch 12 Maze idx 020 Default Step Loss 0.146960, Total Step Loss 0.118104, Term Acc: 0.991561, Prog Acc: 0.987342
+Epoch 12 Maze idx 030 Default Step Loss 0.158380, Total Step Loss 0.122610, Term Acc: 0.991561, Prog Acc: 0.983122
+Epoch 12 Maze idx 040 Default Step Loss 0.010711, Total Step Loss 0.095095, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: test_dif For whole Epoch 12, Time Consum 13.087846 Default Step Loss 0.120702, Total Step Loss 0.111872, Term Acc: 0.993052, Prog Acc: 0.990499
+===============================
+Epoch 13 Maze idx 000 Default Step Loss 0.000396, Total Step Loss 0.092382, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 13 Maze idx 010 Default Step Loss 0.000208, Total Step Loss 0.093328, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 13 Maze idx 020 Default Step Loss 0.000169, Total Step Loss 0.092021, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 13 Maze idx 030 Default Step Loss 0.000125, Total Step Loss 0.091934, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 13 Maze idx 040 Default Step Loss 0.000080, Total Step Loss 0.091663, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 13 Maze idx 050 Default Step Loss 0.000053, Total Step Loss 0.091727, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 13 Maze idx 060 Default Step Loss 0.020717, Total Step Loss 0.098222, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 13 Maze idx 070 Default Step Loss 0.000045, Total Step Loss 0.091403, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 13 Maze idx 080 Default Step Loss 0.000056, Total Step Loss 0.091904, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 13 Maze idx 090 Default Step Loss 0.000110, Total Step Loss 0.094896, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: train For whole Epoch 13, Time Consum 1011.275540 Default Step Loss 0.002372, Total Step Loss 0.092223, Term Acc: 0.999753, Prog Acc: 0.999753
+===============================
+Epoch 13 Maze idx 000 Default Step Loss 0.189791, Total Step Loss 0.121323, Term Acc: 0.988372, Prog Acc: 0.988372
+Epoch 13 Maze idx 010 Default Step Loss 0.280945, Total Step Loss 0.136374, Term Acc: 0.971014, Prog Acc: 0.985507
+Epoch 13 Maze idx 020 Default Step Loss 0.000059, Total Step Loss 0.090763, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 13 Maze idx 030 Default Step Loss 0.323725, Total Step Loss 0.140824, Term Acc: 0.991525, Prog Acc: 0.991525
+Epoch 13 Maze idx 040 Default Step Loss 0.016964, Total Step Loss 0.093711, Term Acc: 0.995633, Prog Acc: 0.995633
+Mode: test_same For whole Epoch 13, Time Consum 15.666539 Default Step Loss 0.173602, Total Step Loss 0.120471, Term Acc: 0.992059, Prog Acc: 0.988939
+===============================
+Epoch 13 Maze idx 000 Default Step Loss 0.264357, Total Step Loss 0.141850, Term Acc: 0.987755, Prog Acc: 0.975510
+Epoch 13 Maze idx 010 Default Step Loss 0.119680, Total Step Loss 0.110375, Term Acc: 0.993333, Prog Acc: 0.993333
+Epoch 13 Maze idx 020 Default Step Loss 0.003197, Total Step Loss 0.092925, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 13 Maze idx 030 Default Step Loss 0.000059, Total Step Loss 0.090763, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 13 Maze idx 040 Default Step Loss 0.294870, Total Step Loss 0.148722, Term Acc: 0.987755, Prog Acc: 0.975510
+Mode: test_dif For whole Epoch 13, Time Consum 15.374619 Default Step Loss 0.173602, Total Step Loss 0.120471, Term Acc: 0.992059, Prog Acc: 0.988939
+===============================
+Epoch 14 Maze idx 000 Default Step Loss 0.000054, Total Step Loss 0.090943, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 14 Maze idx 010 Default Step Loss 0.000042, Total Step Loss 0.090843, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 14 Maze idx 020 Default Step Loss 0.000055, Total Step Loss 0.091537, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 14 Maze idx 030 Default Step Loss 0.000066, Total Step Loss 0.090153, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 14 Maze idx 040 Default Step Loss 0.000101, Total Step Loss 0.090327, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 14 Maze idx 050 Default Step Loss 0.000073, Total Step Loss 0.087364, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 14 Maze idx 060 Default Step Loss 0.000148, Total Step Loss 0.087346, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 14 Maze idx 070 Default Step Loss 0.012419, Total Step Loss 0.091944, Term Acc: 1.000000, Prog Acc: 0.990991
+Epoch 14 Maze idx 080 Default Step Loss 0.000087, Total Step Loss 0.086764, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 14 Maze idx 090 Default Step Loss 0.000276, Total Step Loss 0.085588, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: train For whole Epoch 14, Time Consum 1052.568235 Default Step Loss 0.002427, Total Step Loss 0.089676, Term Acc: 0.999753, Prog Acc: 0.999671
+===============================
+Epoch 14 Maze idx 000 Default Step Loss 0.441445, Total Step Loss 0.169743, Term Acc: 0.987755, Prog Acc: 0.975510
+Epoch 14 Maze idx 010 Default Step Loss 0.039416, Total Step Loss 0.092748, Term Acc: 0.994505, Prog Acc: 0.994505
+Epoch 14 Maze idx 020 Default Step Loss 0.316574, Total Step Loss 0.139044, Term Acc: 0.988235, Prog Acc: 0.988235
+Epoch 14 Maze idx 030 Default Step Loss 0.513153, Total Step Loss 0.173135, Term Acc: 0.974790, Prog Acc: 0.962185
+Epoch 14 Maze idx 040 Default Step Loss 0.000177, Total Step Loss 0.090038, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: test_same For whole Epoch 14, Time Consum 15.586786 Default Step Loss 0.211284, Total Step Loss 0.122162, Term Acc: 0.990641, Prog Acc: 0.987379
+===============================
+Epoch 14 Maze idx 000 Default Step Loss 0.000199, Total Step Loss 0.084877, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 14 Maze idx 010 Default Step Loss 0.000110, Total Step Loss 0.090557, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 14 Maze idx 020 Default Step Loss 0.000043, Total Step Loss 0.086920, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 14 Maze idx 030 Default Step Loss 0.512053, Total Step Loss 0.168648, Term Acc: 0.984127, Prog Acc: 0.984127
+Epoch 14 Maze idx 040 Default Step Loss 0.000217, Total Step Loss 0.081075, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: test_dif For whole Epoch 14, Time Consum 15.650091 Default Step Loss 0.211284, Total Step Loss 0.122162, Term Acc: 0.990641, Prog Acc: 0.987379
+===============================
+Epoch 15 Maze idx 000 Default Step Loss 0.000072, Total Step Loss 0.086477, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 15 Maze idx 010 Default Step Loss 0.000336, Total Step Loss 0.090015, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 15 Maze idx 020 Default Step Loss 0.000950, Total Step Loss 0.086715, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 15 Maze idx 030 Default Step Loss 0.000048, Total Step Loss 0.089426, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 15 Maze idx 040 Default Step Loss 0.000074, Total Step Loss 0.086287, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 15 Maze idx 050 Default Step Loss 0.001185, Total Step Loss 0.085568, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 15 Maze idx 060 Default Step Loss 0.000045, Total Step Loss 0.090656, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 15 Maze idx 070 Default Step Loss 0.000034, Total Step Loss 0.085214, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 15 Maze idx 080 Default Step Loss 0.000165, Total Step Loss 0.086620, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 15 Maze idx 090 Default Step Loss 0.000033, Total Step Loss 0.084661, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: train For whole Epoch 15, Time Consum 1057.555224 Default Step Loss 0.002012, Total Step Loss 0.086632, Term Acc: 0.999835, Prog Acc: 0.999753
+===============================
+Epoch 15 Maze idx 000 Default Step Loss 0.429111, Total Step Loss 0.155069, Term Acc: 0.989362, Prog Acc: 0.989362
+Epoch 15 Maze idx 010 Default Step Loss 0.122720, Total Step Loss 0.106072, Term Acc: 0.995305, Prog Acc: 0.995305
+Epoch 15 Maze idx 020 Default Step Loss 0.143573, Total Step Loss 0.112886, Term Acc: 0.991561, Prog Acc: 0.987342
+Epoch 15 Maze idx 030 Default Step Loss 0.155702, Total Step Loss 0.111798, Term Acc: 0.991304, Prog Acc: 0.991304
+Epoch 15 Maze idx 040 Default Step Loss 0.186491, Total Step Loss 0.118385, Term Acc: 0.991561, Prog Acc: 0.987342
+Mode: test_same For whole Epoch 15, Time Consum 12.751789 Default Step Loss 0.179234, Total Step Loss 0.116386, Term Acc: 0.992768, Prog Acc: 0.989932
+===============================
+Epoch 15 Maze idx 000 Default Step Loss 0.264557, Total Step Loss 0.131991, Term Acc: 0.987395, Prog Acc: 0.970588
+Epoch 15 Maze idx 010 Default Step Loss 0.008990, Total Step Loss 0.089272, Term Acc: 1.000000, Prog Acc: 0.992537
+Epoch 15 Maze idx 020 Default Step Loss 0.263217, Total Step Loss 0.137579, Term Acc: 0.987755, Prog Acc: 0.979592
+Epoch 15 Maze idx 030 Default Step Loss 0.000111, Total Step Loss 0.092157, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 15 Maze idx 040 Default Step Loss 0.104691, Total Step Loss 0.101686, Term Acc: 0.992537, Prog Acc: 0.992537
+Mode: test_dif For whole Epoch 15, Time Consum 12.865597 Default Step Loss 0.179234, Total Step Loss 0.116386, Term Acc: 0.992768, Prog Acc: 0.989932
+===============================
+Epoch 16 Maze idx 000 Default Step Loss 0.030655, Total Step Loss 0.093890, Term Acc: 1.000000, Prog Acc: 0.967742
+Epoch 16 Maze idx 010 Default Step Loss 0.000060, Total Step Loss 0.093120, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 16 Maze idx 020 Default Step Loss 0.000070, Total Step Loss 0.089827, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 16 Maze idx 030 Default Step Loss 0.000023, Total Step Loss 0.084787, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 16 Maze idx 040 Default Step Loss 0.000085, Total Step Loss 0.083320, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 16 Maze idx 050 Default Step Loss 0.000022, Total Step Loss 0.090000, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 16 Maze idx 060 Default Step Loss 0.000024, Total Step Loss 0.086805, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 16 Maze idx 070 Default Step Loss 0.000038, Total Step Loss 0.084988, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 16 Maze idx 080 Default Step Loss 0.000017, Total Step Loss 0.087032, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 16 Maze idx 090 Default Step Loss 0.000018, Total Step Loss 0.081995, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: train For whole Epoch 16, Time Consum 1043.339241 Default Step Loss 0.000153, Total Step Loss 0.086237, Term Acc: 1.000000, Prog Acc: 0.999918
+===============================
+Epoch 16 Maze idx 000 Default Step Loss 0.120187, Total Step Loss 0.104254, Term Acc: 0.995633, Prog Acc: 0.995633
+Epoch 16 Maze idx 010 Default Step Loss 2.083014, Total Step Loss 0.418564, Term Acc: 0.928571, Prog Acc: 0.928571
+Epoch 16 Maze idx 020 Default Step Loss 0.181312, Total Step Loss 0.116743, Term Acc: 0.991561, Prog Acc: 0.983122
+Epoch 16 Maze idx 030 Default Step Loss 0.007334, Total Step Loss 0.088321, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 16 Maze idx 040 Default Step Loss 0.118015, Total Step Loss 0.105051, Term Acc: 0.995305, Prog Acc: 0.995305
+Mode: test_same For whole Epoch 16, Time Consum 12.606327 Default Step Loss 0.167774, Total Step Loss 0.113713, Term Acc: 0.993335, Prog Acc: 0.991208
+===============================
+Epoch 16 Maze idx 000 Default Step Loss 0.180018, Total Step Loss 0.116224, Term Acc: 0.991597, Prog Acc: 0.983193
+Epoch 16 Maze idx 010 Default Step Loss 0.000047, Total Step Loss 0.085879, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 16 Maze idx 020 Default Step Loss 2.083014, Total Step Loss 0.418564, Term Acc: 0.928571, Prog Acc: 0.928571
+Epoch 16 Maze idx 030 Default Step Loss 0.120187, Total Step Loss 0.104254, Term Acc: 0.995633, Prog Acc: 0.995633
+Epoch 16 Maze idx 040 Default Step Loss 0.152038, Total Step Loss 0.108414, Term Acc: 0.992537, Prog Acc: 0.992537
+Mode: test_dif For whole Epoch 16, Time Consum 12.583488 Default Step Loss 0.167774, Total Step Loss 0.113713, Term Acc: 0.993335, Prog Acc: 0.991208
+===============================
+Epoch 17 Maze idx 000 Default Step Loss 0.000012, Total Step Loss 0.085980, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 17 Maze idx 010 Default Step Loss 0.000013, Total Step Loss 0.085939, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 17 Maze idx 020 Default Step Loss 0.000015, Total Step Loss 0.089471, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 17 Maze idx 030 Default Step Loss 0.000013, Total Step Loss 0.086166, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 17 Maze idx 040 Default Step Loss 0.000012, Total Step Loss 0.086905, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 17 Maze idx 050 Default Step Loss 0.000018, Total Step Loss 0.088964, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 17 Maze idx 060 Default Step Loss 0.000012, Total Step Loss 0.084867, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 17 Maze idx 070 Default Step Loss 0.000016, Total Step Loss 0.082500, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 17 Maze idx 080 Default Step Loss 0.000007, Total Step Loss 0.087552, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 17 Maze idx 090 Default Step Loss 0.000006, Total Step Loss 0.087682, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: train For whole Epoch 17, Time Consum 1040.326400 Default Step Loss 0.000014, Total Step Loss 0.086229, Term Acc: 1.000000, Prog Acc: 1.000000
+===============================
+Epoch 17 Maze idx 000 Default Step Loss 0.000012, Total Step Loss 0.079080, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 17 Maze idx 010 Default Step Loss 0.000008, Total Step Loss 0.086351, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 17 Maze idx 020 Default Step Loss 0.097160, Total Step Loss 0.104147, Term Acc: 0.993333, Prog Acc: 0.993333
+Epoch 17 Maze idx 030 Default Step Loss 0.214074, Total Step Loss 0.122989, Term Acc: 0.992537, Prog Acc: 0.992537
+Epoch 17 Maze idx 040 Default Step Loss 0.382757, Total Step Loss 0.151449, Term Acc: 0.981132, Prog Acc: 0.981132
+Mode: test_same For whole Epoch 17, Time Consum 12.744251 Default Step Loss 0.176938, Total Step Loss 0.115407, Term Acc: 0.992910, Prog Acc: 0.991208
+===============================
+Epoch 17 Maze idx 000 Default Step Loss 0.054444, Total Step Loss 0.100056, Term Acc: 1.000000, Prog Acc: 0.992537
+Epoch 17 Maze idx 010 Default Step Loss 0.229360, Total Step Loss 0.124303, Term Acc: 0.991597, Prog Acc: 0.987395
+Epoch 17 Maze idx 020 Default Step Loss 0.245729, Total Step Loss 0.132593, Term Acc: 0.987755, Prog Acc: 0.979592
+Epoch 17 Maze idx 030 Default Step Loss 0.000062, Total Step Loss 0.085984, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 17 Maze idx 040 Default Step Loss 0.067742, Total Step Loss 0.098172, Term Acc: 0.993377, Prog Acc: 0.993377
+Mode: test_dif For whole Epoch 17, Time Consum 12.610299 Default Step Loss 0.176938, Total Step Loss 0.115407, Term Acc: 0.992910, Prog Acc: 0.991208
+===============================
+Epoch 18 Maze idx 000 Default Step Loss 0.000009, Total Step Loss 0.082557, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 18 Maze idx 010 Default Step Loss 0.000008, Total Step Loss 0.089311, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 18 Maze idx 020 Default Step Loss 0.000008, Total Step Loss 0.089676, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 18 Maze idx 030 Default Step Loss 0.000009, Total Step Loss 0.089418, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 18 Maze idx 040 Default Step Loss 0.000007, Total Step Loss 0.081760, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 18 Maze idx 050 Default Step Loss 0.000015, Total Step Loss 0.093038, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 18 Maze idx 060 Default Step Loss 0.000004, Total Step Loss 0.089556, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 18 Maze idx 070 Default Step Loss 0.000004, Total Step Loss 0.084800, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 18 Maze idx 080 Default Step Loss 0.000004, Total Step Loss 0.085198, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 18 Maze idx 090 Default Step Loss 0.000121, Total Step Loss 0.084812, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: train For whole Epoch 18, Time Consum 1059.327746 Default Step Loss 0.000007, Total Step Loss 0.086203, Term Acc: 1.000000, Prog Acc: 1.000000
+===============================
+Epoch 18 Maze idx 000 Default Step Loss 0.339371, Total Step Loss 0.142498, Term Acc: 0.986957, Prog Acc: 0.978261
+Epoch 18 Maze idx 010 Default Step Loss 0.000003, Total Step Loss 0.086654, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 18 Maze idx 020 Default Step Loss 0.000159, Total Step Loss 0.084680, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 18 Maze idx 030 Default Step Loss 0.846469, Total Step Loss 0.219595, Term Acc: 0.971014, Prog Acc: 0.971014
+Epoch 18 Maze idx 040 Default Step Loss 0.000005, Total Step Loss 0.083175, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: test_same For whole Epoch 18, Time Consum 13.626499 Default Step Loss 0.184471, Total Step Loss 0.116581, Term Acc: 0.993193, Prog Acc: 0.991492
+===============================
+Epoch 18 Maze idx 000 Default Step Loss 0.356799, Total Step Loss 0.141892, Term Acc: 0.991525, Prog Acc: 0.991525
+Epoch 18 Maze idx 010 Default Step Loss 0.136700, Total Step Loss 0.109616, Term Acc: 0.991561, Prog Acc: 0.991561
+Epoch 18 Maze idx 020 Default Step Loss 0.368016, Total Step Loss 0.139806, Term Acc: 0.981481, Prog Acc: 0.981481
+Epoch 18 Maze idx 030 Default Step Loss 0.000009, Total Step Loss 0.090277, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 18 Maze idx 040 Default Step Loss 0.247015, Total Step Loss 0.126456, Term Acc: 0.993671, Prog Acc: 0.993671
+Mode: test_dif For whole Epoch 18, Time Consum 15.596915 Default Step Loss 0.184471, Total Step Loss 0.116581, Term Acc: 0.993193, Prog Acc: 0.991492
+===============================
+Epoch 19 Maze idx 000 Default Step Loss 0.000004, Total Step Loss 0.082228, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 19 Maze idx 010 Default Step Loss 0.000004, Total Step Loss 0.085798, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 19 Maze idx 020 Default Step Loss 0.000004, Total Step Loss 0.088715, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 19 Maze idx 030 Default Step Loss 0.000004, Total Step Loss 0.084452, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 19 Maze idx 040 Default Step Loss 0.000008, Total Step Loss 0.082504, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 19 Maze idx 050 Default Step Loss 0.000003, Total Step Loss 0.086548, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 19 Maze idx 060 Default Step Loss 0.000003, Total Step Loss 0.089051, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 19 Maze idx 070 Default Step Loss 0.000004, Total Step Loss 0.081185, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 19 Maze idx 080 Default Step Loss 0.000005, Total Step Loss 0.090340, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 19 Maze idx 090 Default Step Loss 0.000006, Total Step Loss 0.084704, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: train For whole Epoch 19, Time Consum 1045.004888 Default Step Loss 0.000004, Total Step Loss 0.086186, Term Acc: 1.000000, Prog Acc: 1.000000
+===============================
+Epoch 19 Maze idx 000 Default Step Loss 0.280029, Total Step Loss 0.125282, Term Acc: 0.981481, Prog Acc: 0.981481
+Epoch 19 Maze idx 010 Default Step Loss 0.620624, Total Step Loss 0.188447, Term Acc: 0.973684, Prog Acc: 0.973684
+Epoch 19 Maze idx 020 Default Step Loss 0.073338, Total Step Loss 0.104956, Term Acc: 1.000000, Prog Acc: 0.992537
+Epoch 19 Maze idx 030 Default Step Loss 0.232514, Total Step Loss 0.126314, Term Acc: 0.992537, Prog Acc: 0.992537
+Epoch 19 Maze idx 040 Default Step Loss 0.296052, Total Step Loss 0.134603, Term Acc: 0.986957, Prog Acc: 0.982609
+Mode: test_same For whole Epoch 19, Time Consum 12.490517 Default Step Loss 0.184430, Total Step Loss 0.116474, Term Acc: 0.993477, Prog Acc: 0.991917
+===============================
+Epoch 19 Maze idx 000 Default Step Loss 0.196063, Total Step Loss 0.118900, Term Acc: 0.991597, Prog Acc: 0.983193
+Epoch 19 Maze idx 010 Default Step Loss 0.280029, Total Step Loss 0.125282, Term Acc: 0.981481, Prog Acc: 0.981481
+Epoch 19 Maze idx 020 Default Step Loss 0.000220, Total Step Loss 0.085887, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 19 Maze idx 030 Default Step Loss 0.190102, Total Step Loss 0.117899, Term Acc: 0.991304, Prog Acc: 0.986957
+Epoch 19 Maze idx 040 Default Step Loss 0.583399, Total Step Loss 0.172257, Term Acc: 0.967742, Prog Acc: 0.967742
+Mode: test_dif For whole Epoch 19, Time Consum 13.438192 Default Step Loss 0.184430, Total Step Loss 0.116474, Term Acc: 0.993477, Prog Acc: 0.991917
+===============================
+Epoch 20 Maze idx 000 Default Step Loss 0.000004, Total Step Loss 0.082599, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 20 Maze idx 010 Default Step Loss 0.000006, Total Step Loss 0.082513, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 20 Maze idx 020 Default Step Loss 0.000003, Total Step Loss 0.085010, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 20 Maze idx 030 Default Step Loss 0.000005, Total Step Loss 0.084424, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 20 Maze idx 040 Default Step Loss 0.000002, Total Step Loss 0.086616, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 20 Maze idx 050 Default Step Loss 0.000002, Total Step Loss 0.084767, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 20 Maze idx 060 Default Step Loss 0.000003, Total Step Loss 0.089597, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 20 Maze idx 070 Default Step Loss 0.000002, Total Step Loss 0.083574, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 20 Maze idx 080 Default Step Loss 0.000003, Total Step Loss 0.085667, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 20 Maze idx 090 Default Step Loss 0.000003, Total Step Loss 0.087410, Term Acc: 1.000000, Prog Acc: 1.000000
+Mode: train For whole Epoch 20, Time Consum 1056.454401 Default Step Loss 0.000003, Total Step Loss 0.086193, Term Acc: 1.000000, Prog Acc: 1.000000
+===============================
+Epoch 20 Maze idx 000 Default Step Loss 0.222166, Total Step Loss 0.121617, Term Acc: 0.991837, Prog Acc: 0.987755
+Epoch 20 Maze idx 010 Default Step Loss 0.000004, Total Step Loss 0.085053, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 20 Maze idx 020 Default Step Loss 0.667066, Total Step Loss 0.185449, Term Acc: 0.967742, Prog Acc: 0.967742
+Epoch 20 Maze idx 030 Default Step Loss 0.136789, Total Step Loss 0.109350, Term Acc: 0.993377, Prog Acc: 0.993377
+Epoch 20 Maze idx 040 Default Step Loss 0.102882, Total Step Loss 0.102825, Term Acc: 0.994505, Prog Acc: 0.994505
+Mode: test_same For whole Epoch 20, Time Consum 12.914286 Default Step Loss 0.184248, Total Step Loss 0.116233, Term Acc: 0.993477, Prog Acc: 0.991917
+===============================
+Epoch 20 Maze idx 000 Default Step Loss 0.000003, Total Step Loss 0.085276, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 20 Maze idx 010 Default Step Loss 0.682384, Total Step Loss 0.196638, Term Acc: 0.983871, Prog Acc: 0.983871
+Epoch 20 Maze idx 020 Default Step Loss 0.000003, Total Step Loss 0.082937, Term Acc: 1.000000, Prog Acc: 1.000000
+Epoch 20 Maze idx 030 Default Step Loss 0.235872, Total Step Loss 0.126751, Term Acc: 0.992537, Prog Acc: 0.992537
+Epoch 20 Maze idx 040 Default Step Loss 0.253850, Total Step Loss 0.120813, Term Acc: 0.981481, Prog Acc: 0.981481
+Mode: test_dif For whole Epoch 20, Time Consum 14.341691 Default Step Loss 0.184248, Total Step Loss 0.116233, Term Acc: 0.993477, Prog Acc: 0.991917
+===============================
+Best def_loss for test same: 0.083471
+Best epoch_def_loss for test same at 10 epoch
+Best total_loss for test same: 0.106271
+Best epoch_total_loss for test same at 10 epoch
+Best ter_accs for test same: 0.993477
+Best epoch_ter_accs for test same at 19 epoch
+Best pro_accs for test same: 0.991917
+Best epoch_pro_accs for test same at 4 epoch

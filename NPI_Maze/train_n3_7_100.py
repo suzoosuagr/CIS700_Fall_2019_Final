@@ -215,7 +215,7 @@ if __name__ == "__main__":
         run_epoch(npi, mode, train_data, writer)
 
         lr_schedulers.step(curr_epoch)
-        if curr_epoch % 3 == 0:
+        if curr_epoch % 2 == 0:
             model_name = 'npi_' + str(curr_epoch) + '.pth'
             save_path = os.path.join(exp_dir, model_name)
             npi.save_network(save_path, cuda_flag)
@@ -241,7 +241,7 @@ if __name__ == "__main__":
             Best_results['epoch_pro_accs'] = curr_epoch
 
         mode = 'test_dif'
-        run_epoch(npi, mode, test_same_data, writer)
+        run_epoch(npi, mode, test_dif_data, writer)
 
     save_path = os.path.join(exp_dir, 'npi_last.pth')
     npi.save_network(save_path, cuda_flag)
