@@ -115,16 +115,19 @@ def generate_data(prefix, num, size):
         data.append((start, end, maze, trace))
 
     print(os.getcwd())
-    with open('%s.pik' % prefix, 'wb') as f:
-        pickle.dump(data, f)
+    print(data)
+    # with open('%s.pik' % prefix, 'wb') as f:
+    #     pickle.dump(data, f)
+    z = 1
 
 if __name__ == "__main__":
-    generate_data('train_5_50', 50, 5)
-    generate_data('train_5_100', 100, 5)
-    generate_data('train_7_100', 100, 7)
-    generate_data('test_5_50', 50, 5)
-    generate_data('test_7_50', 50, 7)
-    generate_data('test_10_50', 50, 10)
+    generate_data('demo', 1, 3)
+    # generate_data('train_5_50', 50, 5)
+    # generate_data('train_5_100', 100, 5)
+    # generate_data('train_7_100', 100, 7)
+    # generate_data('test_5_50', 50, 5)
+    # generate_data('test_7_50', 50, 7)
+    # generate_data('test_10_50', 50, 10)
 
     # DATA_PATH = 'train.pik'
     # with open(DATA_PATH, 'rb', ) as f:
