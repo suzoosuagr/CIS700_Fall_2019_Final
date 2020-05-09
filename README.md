@@ -1,7 +1,10 @@
 # CIS 700 Final NPI QUEUE and STACK
+Neural Programmer-Interpreter Implementation in PyTorch. Here is the original paper: [Neural Programmer-Interpreters](https://arxiv.org/abs/1511.06279), by Reed and de Freitas.
+
+We modified NPI to implement a differentiable queue and stack to solve the Maze and Reverse Polish Notation problems.
 
 ## Maze Problem
-Please NPI_Maze folder at first. All files needed are in this folder.
+Please enter NPI_Maze folder at first. All files needed are in this folder.
 
 ### Environment
 * numpy 1.18.1
