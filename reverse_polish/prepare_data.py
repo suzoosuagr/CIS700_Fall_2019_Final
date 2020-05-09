@@ -8,9 +8,9 @@ ARGS = {
 
 if __name__ == "__main__":
     if ARGS["GENERATE"]:
-        generate_rev_polish('train', 500, ARGS["DEBUG"])
-        generate_rev_polish('eval', 50, ARGS["DEBUG"])
-        generate_rev_polish('test', 50, ARGS["DEBUG"])
+        generate_rev_polish('train_8', 500, ARGS["DEBUG"])
+        generate_rev_polish('eval_8', 50, ARGS["DEBUG"])
+        generate_rev_polish('test_8', 50, ARGS["DEBUG"])
         print("FINISHED Generating")
 
 

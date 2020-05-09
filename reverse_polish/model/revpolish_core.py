@@ -22,7 +22,7 @@ class RevPolishCore(nn.Module):
         )
 
         # tmp = torch.empty((CONFIG["PROGRAM_NUM"], CONFIG["PROGRAM_KEY_SIZE"]))
-        self.program_key = torch.randn((CONFIG["PROGRAM_NUM"], CONFIG["PROGRAM_KEY_SIZE"]), requires_grad=True).float()
+        self.program_key = torch.randn((CONFIG["PROGRAM_NUM"], CONFIG["PROGRAM_KEY_SIZE"]), requires_grad=True).float().cuda()
 
         # Program embedder
         self.program_embd = nn.Embedding(CONFIG["PROGRAM_NUM"], CONFIG["PROGRAM_EMBEDDING_SIZE"])

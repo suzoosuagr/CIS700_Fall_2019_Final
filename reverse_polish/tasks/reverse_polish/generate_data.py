@@ -7,7 +7,7 @@ import random
 random.seed(1)
 np.random.seed(1)
 
-MAX_LENGTH = 14
+MAX_LENGTH = 8
 OPERAND = [*'ABCDEFGH']
 OPERATOR = [*'+-*/']
 SPECIAL = [*'()']
