@@ -31,20 +31,24 @@ same_n_iter = 0
 diff_n_iter = 0
 
 
-def run_epoch(model, mode, cur_data, writer):
+def run_epoch(model, mode, cur_data, writer, path):
     global train_n_iter
     global same_n_iter
     global diff_n_iter
     if mode == 'train':
         random.shuffle(cur_data)
         model.train()
-    else:
+    elif mode == 'test':
+        model.load_state_dict(torch.load(path))
+        model.eval()
+    else: 
         model.eval()
 
     epoch_def_loss = 0.0
     epoch_total_loss = 0.0
     epoch_pro_accs = 0.0
     epoch_ter_accs = 0.0
+    epoch_arg_accs = [0.0, 0.0]
     epoch_step = 0
     start_time = time.time()
 
@@ -60,6 +64,7 @@ def run_epoch(model, mode, cur_data, writer):
         step_total_loss = 0.0
         pro_accs = 0.0
         ter_accs = 0.0
+        arg_accs = [0.0, 0.0]
 
         for trace_idx in range(len(x)):
             (pro_in_name, pro_in_id), arg_in, ter_in = x[trace_idx]
@@ -98,19 +103,23 @@ def run_epoch(model, mode, cur_data, writer):
             gt = (ter_out_ft, pro_out_ft, arg_out_ft)
 
             default_loss, total_loss = criterion(pred, gt)
-            pro_acc, ter_acc = criterion.metric(pred, gt)
+            pro_acc, ter_acc, arg_acc = criterion.metric(pred, gt)
             pro_accs += pro_acc
             ter_accs += ter_acc
+            arg_accs[0] += arg_acc[0]
+            arg_accs[1] += arg_acc[1]
+            # arg_accs += arg_accs
+
 
             if mode == 'train':
-                if pro_out_id == 0 or pro_out_id == 1 or pro_out_id == 4:
-                    optimizer.zero_grad()
-                    total_loss.backward(retain_graph=True)
-                    optimizer.step()
-                else:
-                    optimizer.zero_grad()
-                    default_loss.backward(retain_graph=True)
-                    optimizer.step()
+                # if pro_out_id == 0 or pro_out_id == 1 or pro_out_id == 4:
+                optimizer.zero_grad()
+                total_loss.backward(retain_graph=True)
+                optimizer.step()
+                # else:
+                #     optimizer.zero_grad()
+                #     default_loss.backward(retain_graph=True)
+                #     optimizer.step()
 
                 step_def_loss += default_loss.item()
                 step_total_loss += total_loss.item()
@@ -122,45 +131,45 @@ def run_epoch(model, mode, cur_data, writer):
                   .format(epoch, idx, step_def_loss / len(x), step_total_loss / len(x), ter_accs / len(x),
                           pro_accs / len(x)))
 
-        if mode == 'train':
-            writer.add_scalar(mode + '/def_loss', step_def_loss / len(x), train_n_iter)
-            writer.add_scalar(mode + '/total_loss', step_total_loss / len(x), train_n_iter)
-            writer.add_scalar(mode + '/pro_accs', pro_accs / len(x), train_n_iter)
-            writer.add_scalar(mode + '/ter_accs', ter_accs / len(x), train_n_iter)
-            train_n_iter += 1
-        elif mode == 'eval':
-            writer.add_scalar(mode + '/def_loss', step_def_loss / len(x), same_n_iter)
-            writer.add_scalar(mode + '/total_loss', step_total_loss / len(x), same_n_iter)
-            writer.add_scalar(mode + '/pro_accs', pro_accs / len(x), same_n_iter)
-            writer.add_scalar(mode + '/ter_accs', ter_accs / len(x), same_n_iter)
-            same_n_iter += 1
-        elif mode == 'test':
-            writer.add_scalar(mode + '/def_loss', step_def_loss / len(x), diff_n_iter)
-            writer.add_scalar(mode + '/total_loss', step_total_loss / len(x), diff_n_iter)
-            writer.add_scalar(mode + '/pro_accs', pro_accs / len(x), diff_n_iter)
-            writer.add_scalar(mode + '/ter_accs', ter_accs / len(x), diff_n_iter)
-            diff_n_iter += 1
+        if writer is not None:
+            if mode == 'train':
+                writer.add_scalar(mode + '/def_loss', step_def_loss / len(x), train_n_iter)
+                writer.add_scalar(mode + '/total_loss', step_total_loss / len(x), train_n_iter)
+                writer.add_scalar(mode + '/pro_accs', pro_accs / len(x), train_n_iter)
+                writer.add_scalar(mode + '/ter_accs', ter_accs / len(x), train_n_iter)
+                train_n_iter += 1
+            elif mode == 'eval':
+                writer.add_scalar(mode + '/def_loss', step_def_loss / len(x), same_n_iter)
+                writer.add_scalar(mode + '/total_loss', step_total_loss / len(x), same_n_iter)
+                writer.add_scalar(mode + '/pro_accs', pro_accs / len(x), same_n_iter)
+                writer.add_scalar(mode + '/ter_accs', ter_accs / len(x), same_n_iter)
+                same_n_iter += 1
+            elif mode == 'test':
+                writer.add_scalar(mode + '/def_loss', step_def_loss / len(x), diff_n_iter)
+                writer.add_scalar(mode + '/total_loss', step_total_loss / len(x), diff_n_iter)
+                writer.add_scalar(mode + '/pro_accs', pro_accs / len(x), diff_n_iter)
+                writer.add_scalar(mode + '/ter_accs', ter_accs / len(x), diff_n_iter)
+                diff_n_iter += 1
 
         epoch_def_loss += step_def_loss
         epoch_total_loss += step_total_loss
         epoch_pro_accs += pro_accs
         epoch_ter_accs += ter_accs
+        epoch_arg_accs[0] += arg_accs[0]
+        epoch_arg_accs[1] += arg_accs[1]
         epoch_step += len(x)
 
 
     end_time = time.time()
     epoch_time = end_time - start_time
     print("Mode: {0:s} For whole Epoch {1:02d}, Time Consum {2:05f} Default Step Loss {3:05f}, " \
-          "Total Step Loss {4:05f}, Term Acc: {5:03f}, Prog Acc: {6:03f}"
+          "Total Step Loss {4:05f}, Term Acc: {5:03f}, Prog Acc: {6:03f}, Arg0 Acc: {7:03f}, Arg1 Acc: {8:03f}"
           .format(mode, epoch, epoch_time, epoch_def_loss / epoch_step,
                   epoch_total_loss / epoch_step, epoch_ter_accs / epoch_step,
-                  epoch_pro_accs / epoch_step))
+                  epoch_pro_accs / epoch_step, epoch_arg_accs[0] / epoch_step, epoch_arg_accs[1] / epoch_step))
     print('===============================')
     return (epoch_def_loss / epoch_step, epoch_total_loss / epoch_step,
             epoch_ter_accs / epoch_step, epoch_pro_accs / epoch_step)
-
-def test_epoch(model, metric, data):
-    
 
 
 def print_net(network):
@@ -173,12 +182,15 @@ def print_net(network):
     print('-----------------------------------------------')
     
 if __name__ == "__main__":
+    FLG_TEST = False
     start_epoch = 1
     max_num_epochs = 6
-    exp_dir = os.path.join('tfboard', 'exp_len8_sgd_1en3')
+    exp_dir = os.path.join('tfboard', 'exp_len14')
     if not os.path.exists(exp_dir):
         os.makedirs(exp_dir)
-    writer = SummaryWriter(exp_dir)
+
+    if not FLG_TEST:
+        writer = SummaryWriter(exp_dir)
 
     Best_results = dict()
     Best_results['def_loss'] = 1000000.0
@@ -191,15 +203,15 @@ if __name__ == "__main__":
     Best_results['epoch_pro_accs'] = -1
 
 
-    TRAIN_DATA_PATH = 'tasks/reverse_polish/data/train_8.pik'
+    TRAIN_DATA_PATH = 'tasks/reverse_polish/data/train.pik'
     with open(TRAIN_DATA_PATH, 'rb', ) as f:
         train_data = pickle.load(f)
 
-    EVAL_DATA_PATH = 'tasks/reverse_polish/data/eval_8.pik'
+    EVAL_DATA_PATH = 'tasks/reverse_polish/data/eval.pik'
     with open(EVAL_DATA_PATH, 'rb', ) as f:
         eval_data = pickle.load(f)
 
-    TEST_DATA_PATH = 'tasks/reverse_polish/data/test_8.pik'
+    TEST_DATA_PATH = 'tasks/reverse_polish/data/test.pik'
     with open(TEST_DATA_PATH, 'rb', ) as f:
         test_data = pickle.load(f)
 
@@ -208,36 +220,42 @@ if __name__ == "__main__":
 
     print_net(npi)
 
-    # optimizer = torch.optim.Adam(npi.parameters(), lr=1e-4)
-    optimizer = torch.optim.SGD(npi.parameters(), lr=1e-3)
+    optimizer = torch.optim.Adam(npi.parameters(), lr=1e-4)
+    # optimizer = torch.optim.SGD(npi.parameters(), lr=1e-4)
     lr_schedulers = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=max_num_epochs)
 
-    for epoch in range(start_epoch, max_num_epochs+1):
-        
-        run_epoch(npi, 'train', train_data, writer)
+    if not FLG_TEST:
 
-        lr_schedulers.step(epoch)
+        for epoch in range(start_epoch, max_num_epochs+1):
+            
+            run_epoch(npi, 'train', train_data, writer, os.path.join(exp_dir, 'npi_{}.pth'.format(epoch)))
 
-        if epoch % 2 == 0:
-            def_loss, total_loss, ter_accs, pro_accs = run_epoch(npi, 'eval', eval_data, writer)
-            if def_loss < Best_results['def_loss']:
-                Best_results['def_loss'] = def_loss
-                Best_results['epoch_def_loss'] = epoch
-            if total_loss < Best_results['total_loss']:
-                Best_results['total_loss'] = total_loss
-                Best_results['epoch_total_loss'] = epoch
-            if ter_accs > Best_results['ter_accs']:
-                Best_results['ter_accs'] = ter_accs
-                Best_results['epoch_ter_accs'] = epoch
-            if pro_accs > Best_results['pro_accs']:
-                Best_results['pro_accs'] = pro_accs
-                Best_results['epoch_pro_accs'] = epoch
+            lr_schedulers.step(epoch)
 
-            torch.save(npi.state_dict(), os.path.join(exp_dir, 'npi_{}.pth'.format(epoch)))
+            if epoch % 2 == 0:
+                def_loss, total_loss, ter_accs, pro_accs = run_epoch(npi, 'eval', eval_data, writer, os.path.join(exp_dir, 'npi_{}.pth'.format(epoch)))
+                if def_loss < Best_results['def_loss']:
+                    Best_results['def_loss'] = def_loss
+                    Best_results['epoch_def_loss'] = epoch
+                if total_loss < Best_results['total_loss']:
+                    Best_results['total_loss'] = total_loss
+                    Best_results['epoch_total_loss'] = epoch
+                if ter_accs > Best_results['ter_accs']:
+                    Best_results['ter_accs'] = ter_accs
+                    Best_results['epoch_ter_accs'] = epoch
+                if pro_accs > Best_results['pro_accs']:
+                    Best_results['pro_accs'] = pro_accs
+                    Best_results['epoch_pro_accs'] = epoch
 
-    for key, val in Best_results.items():
-        if key.find('epoch') != -1:
-            print('Best %s for test same at %d epoch' % (key, val))
-        else:
-            print('Best %s for test same: %f' % (key, val))
+                torch.save(npi.state_dict(), os.path.join(exp_dir, 'npi_{}.pth'.format(epoch)))
+
+        for key, val in Best_results.items():
+            if key.find('epoch') != -1:
+                print('Best %s for test same at %d epoch' % (key, val))
+            else:
+                print('Best %s for test same: %f' % (key, val))
+
+    else:
+        epoch = 6
+        run_epoch(npi, 'test', test_data, None, os.path.join(exp_dir, 'npi_{}.pth'.format(epoch)))
 

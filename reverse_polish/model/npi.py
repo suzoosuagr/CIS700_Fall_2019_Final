@@ -144,7 +144,15 @@ class NPI_LOSS(nn.Module):
         ter_re = (ter_pred_idx == ter_y).squeeze()
         ter_acc = 0.0 + ter_re.item()
 
-        return pro_acc, ter_acc
+        _, arg0_pred_idx = torch.max(ter.squeeze(0), 1)
+        ter_re = (arg0_pred_idx == arg0_y).squeeze()
+        arg0_acc = 0.0 + ter_re.item()
+
+        _, arg1_pred_idx = torch.max(ter.squeeze(0), 1)
+        ter_re = (arg1_pred_idx == arg1_y).squeeze()
+        arg1_acc = 0.0 + ter_re.item()
+
+        return pro_acc, ter_acc, [arg0_acc, arg1_acc]
 
 
 
