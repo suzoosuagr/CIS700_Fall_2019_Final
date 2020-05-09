@@ -1,6 +1,7 @@
 # CIS 700 Final NPI QUEUE and STACK
 
 ## Maze Problem
+Please NPI_Maze folder at first. All files needed are in this folder.
 
 ### Environment
 * numpy 1.18.1
