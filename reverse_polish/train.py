@@ -94,26 +94,25 @@ def run_epoch(npi, mode, cur_data, writer):
             #     # first step:
             #     pro_pred, arg_pred, ter_pred, hidden, cell = npi(env_ft, arg_in_ft, pro_in_ft, hidden=None, cell=None)
             # else:
-            pro_pred, arg_pred, ter_pred, _, _ = npi(env_ft, arg_in_ft, pro_in_ft, hidden, cell)
+            pro_pred, arg_pred, ter_pred, hidden, cell = npi(env_ft, arg_in_ft, pro_in_ft, hidden, cell)
             pred = (pro_pred, arg_pred, ter_pred)
             gt = (pro_out_ft, arg_out_ft, ter_out_ft)
             default_loss, total_loss = npi.cal_loss(pred, gt)
 
-            pro_acc, ter_acc = npi.cal_metrics(pred, gt)
+            pro_acc, ter_acc = npi.cal_metrics(pred, gt)   
             pro_accs += pro_acc
             ter_accs += ter_acc
 
             if mode == 'train':
                 # arg is not blank
-                if pro_out_id == 0 or pro_out_id == 3 \
-                        or pro_out_id == 4 or pro_out_id == 7:
-                    optimizer.zero_grad()
-                    total_loss.backward(retain_graph=True)
-                    optimizer.step()
-                else:  # ter_loss and pro_loss
-                    optimizer.zero_grad()
-                    default_loss.backward(retain_graph=True)
-                    optimizer.step()
+                # if pro_out_id == 0 or pro_out_id == 3 \
+                #         or pro_out_id == 4 or pro_out_id == 7:
+                optimizer.zero_grad()
+                total_loss.backward(retain_graph=True)
+                optimizer.step()
+                optimizer.zero_grad()
+                default_loss.backward(retain_graph=True)
+                optimizer.step()
 
             step_def_loss += default_loss.item()
             step_total_loss += total_loss.item()
@@ -207,7 +206,7 @@ if __name__ == "__main__":
     os.environ["CUDA_VISIBLE_DEVICES"] = CUDA_VISIBLE_DEVICES
 
     if torch.cuda.is_available():
-        cuda_flag = True
+        cuda_flag = False
     else:
         cuda_flag = False
 

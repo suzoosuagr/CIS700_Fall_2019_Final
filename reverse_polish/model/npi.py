@@ -4,148 +4,80 @@ import torch.nn as nn
 import os
 
 class NPI(nn.Module):
-    def __init__(self, core, config, npi_core_dim=256, npi_core_layers=2):
+    def __init__(self, core, config, npi_core_dim=256, npi_core_layer=2):
         super(NPI, self).__init__()
 
         self.core = core
-        self.state_dim = core.state_dim
-        self.pro_dim = core.program_dim
+        self.config = config
         self.npi_core_dim = npi_core_dim
-        self.npi_core_layers = npi_core_layers
-        self.num_args, self.arg_depth = config["ARGUMENT_NUM"], config["ARGUMENT_DEPTH"]
-        self.num_progs, self.key_dim = config["PROGRAM_NUM"], config["PROGRAM_KEY_SIZE"]
+        self.npi_core_layer = npi_core_layer
 
-        # Build NPI LSTM Core, hidden state
-        self.lstm = self.npi_core()
+        self.num_args = config["ARGUMENT_NUM"]
+        self.arg_dim = config["ARGUMENT_DEPTH"]
+        self.num_prog  = config["PROGRAM_NUM"]
+        self.key_dim   = config["PROGRAM_KEY_SIZE"]
 
-        # Build Termination Network => Returns probability of terminating
-        self.ter_net = self.build_ter_net()
+        self.terminate_decoder = nn.Linear(npi_core_dim, 2)
+        self.arguments_decoder = Arg_Net(self.npi_core_layer, self.arg_dim)
+        self.programes_decoder = Key_Net(self.npi_core_layer, self.key_dim, self.num_prog)
 
-        # Build Key Network => Generates probability distribution over programs
-        self.pro_net = self.build_pro_net()
-
-        # Build Argument Networks => Generates list of argument distributions
-        for i in range(self.num_args):
-            setattr(self, 'arg_net_%d' % i, self.build_arg_net())
-
-    # def reset_state(self, batch_size):
-    #     """
-    #     Zero NPI Core LSTM Hidden States. LSTM States are represented as a Tuple, consisting of the
-    #     LSTM C State, and the LSTM H State (in that order: (c, h)).
-    #     """
-    #     # hidden_state = torch.zeros(self.npi_core_layers, batch_size, self.npi_core_dim)
-    #     self.h0 = torch.zeros(self.npi_core_layers, batch_size, self.npi_core_dim)
-    #     self.c0 = torch.zeros(self.npi_core_layers, batch_size, self.npi_core_dim)
-    #     # # return hidden_state
-    #     if torch.cuda.is_available():
-    #         self.h0 = self.h0.cuda()
-    #         self.c0 = self.c0.cuda()
-            
+        self.npi_core = NPI_Core(self.core.state_dim, self.core.program_dim, self.npi_core_dim, self.npi_core_layer)
 
 
-    def npi_core(self):
-        network = torch.nn.LSTM(self.state_dim + self.pro_dim,
-                                self.npi_core_dim,
-                                self.npi_core_layers)
-        return network
+    def forward(self, ):
 
-    def build_ter_net(self):
-        network = torch.nn.Sequential(
-            torch.nn.Linear(self.npi_core_dim, self.npi_core_dim // 2),
-            torch.nn.ReLU(),
-            torch.nn.Linear(self.npi_core_dim // 2, 2),
+
+
+
+class NPI_Core(nn.Module):
+    def __init__(self, state_dim, program_dim, npi_core_dim=256, npi_core_layer=2):
+        super(NPI_Core, self).__init__()
+
+        self.rnn = nn.GRU(state_dim + program_dim, npi_core_dim, npi_core_layer)
+
+    def forward(self, state_encoding, program_embedding, h0):
+        c = torch.cat([state_encoding, program_embedding], dim=2)
+        out, hn = rnn(input, h0)
+        return out, hn
+
+class Key_Net(nn.Module):
+    def __init__(self, npi_core_dim=256, key_dim=5, num_program=6):
+        super(Key_Net, self).__init__()
+
+        self.num_program = num_program
+
+        self.fc = nn.Sequential(
+            nn.Linear(npi_core_dim, key_dim),
+            nn.ReLU(),
+            nn.Linear(key_dim, key_dim)
+        )
+    
+    def forward(self, program_key, hidden):
+        # program_key with shape : [program_num, PROGRAM_KEY_SIZE]
+        program_key = program_key.unsqueeze(0)
+        key = self.fc(hidden)
+        key = key.repeat(1, self.num_program ,1) # [1, num_program, PROGRAM_KEY_SIZE]
+
+        prog_sim = key * program_key  # [1, num_program, PROGRAM_KEY_SIZE]
+        prog_dist = torch.sum(prog_sim, dim=2)
+        return prog_dist
+
+class Arg_Net(nn.Module):
+    def __init__(self, npi_core_dim=256, arg_dim=15):
+        super(Arg_Net, self).__init__()
+
+        self.arg_fc0 = nn.Sequential(
+            nn.Linear(npi_core_dim, arg_dim),
+            nn.ReLU()
         )
 
-        return network
-
-    def build_pro_net(self):
-        network = torch.nn.Sequential(
-            torch.nn.Linear(self.npi_core_dim, self.key_dim),
-            torch.nn.ReLU(),
-            torch.nn.Linear(self.key_dim, self.key_dim),
+        self.arg_fc1 = nn.Sequential(
+            nn.Linear(npi_core_dim, arg_dim),
+            nn.ReLU()
         )
 
-        return network
+    def forward(self, hidden):
+        arg0 = self.arg_fc0(hidden)
+        arg1 = self.arg_fc1(hidden)
 
-    def build_arg_net(self):
-        network = torch.nn.Sequential(
-            torch.nn.Linear(self.npi_core_dim, self.arg_depth),
-            torch.nn.ReLU(),
-            torch.nn.Linear(self.arg_depth, self.arg_depth),
-        )
-        return network
-
-
-    def forward(self, env_in, arg_in, pro_in, hidden, cell):
-        b, _, = env_in.size()
-        static_ft, pro_id_embed = self.core(env_in, arg_in, pro_in)
-        static_ft = torch.unsqueeze(static_ft, 1)
-        merge_ft = torch.cat((static_ft, pro_id_embed), dim=2)
-        merge_ft = merge_ft.permute(1, 0, 2)
-        # hidden = self.init_state(b)
-
-        # if hidden == None:
-        #     lstm_out, (hn, cn) = self.lstm(merge_ft)
-        # else:
-        lstm_out, (hn, cn) = self.lstm(merge_ft, (hidden, cell))
-        lstm_out = lstm_out[-1]
-        ter_out = self.ter_net(lstm_out)
-        key_out = self.pro_net(lstm_out).view((-1, 1, self.key_dim))
-        key_out = key_out.repeat(1, self.num_progs, 1)
-        z = self.core.program_key
-        pro_sim = key_out * z
-        # pro_sim = torch.matmul(key_out, self.core.pro_key)
-        pro_dist = torch.sum(pro_sim, dim=2)
-
-        args = []
-        for i in range(self.num_args):
-            cur_arg_net = getattr(self, 'arg_net_%d' % i)
-            arg_out = cur_arg_net(lstm_out)
-            args.append(arg_out)
-
-        args = torch.cat(args, 1)
-
-        return pro_dist, args, ter_out, hn, cn
-
-    def cal_loss(self, pred, gt):
-        pro_pred, arg_pred, ter_pred = pred
-        pro_out_ft, arg_out_ft, ter_out_ft = gt
-        ter_out_ft = ter_out_ft.long()
-        pro_out_ft = pro_out_ft.long()
-
-        ce = nn.CrossEntropyLoss()
-        ter_loss = ce(ter_pred, ter_out_ft)
-        pro_loss = ce(pro_pred, pro_out_ft)
-
-        l1 = nn.L1Loss()
-        arg_out_ft = arg_out_ft.float()
-        arg_loss = l1(arg_pred, arg_out_ft)
-
-        default_loss = 2 * ter_loss + pro_loss
-        total_loss = 0.25 * (ter_loss + pro_loss) + arg_loss
-
-        return default_loss, total_loss
-
-    def cal_metrics(self, pred, gt):
-        pro_pred, arg_pred, ter_pred = pred
-        pro_out_ft, arg_out_ft, ter_out_ft = gt
-
-
-        _, pro_pred_idx = torch.max(pro_pred, 1)
-        pro_re = (pro_pred_idx == pro_out_ft).squeeze()
-        pro_acc = 0.0 + pro_re.item()
-
-        _, ter_pred_idx = torch.max(ter_pred, 1)
-        ter_re = (ter_pred_idx == ter_out_ft).squeeze()
-        ter_acc = 0.0 + ter_re.item()
-
-        return pro_acc, ter_acc
-
-    def save_network(self, save_path, cuda_flag):
-        if cuda_flag:
-            torch.save(self.cpu().state_dict(), save_path)
-        else:
-            torch.save(self.state_dict(), save_path)
-
-    def load_networks(self, load_path):
-        self.load_state_dict(torch.load(load_path))
+        return (arg0, arg1)
