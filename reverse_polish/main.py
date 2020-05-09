@@ -94,7 +94,7 @@ def run_epoch(model, mode, cur_data, writer):
             env_ft = env_ft.to(device)
 
             initial = (trace_idx==0)
-            pred, _ = npi(env_ft, arg_in_ft, pro_in_ft, h0)
+            pred, _ = npi(env_ft, arg_in_ft, pro_in_ft, h0, initial)
             gt = (ter_out_ft, pro_out_ft, arg_out_ft)
 
             default_loss, total_loss = criterion(pred, gt)
@@ -159,6 +159,10 @@ def run_epoch(model, mode, cur_data, writer):
     return (epoch_def_loss / epoch_step, epoch_total_loss / epoch_step,
             epoch_ter_accs / epoch_step, epoch_pro_accs / epoch_step)
 
+def test_epoch(model, metric, data):
+    
+
+
 def print_net(network):
     print('---------- Networks initialized -------------')
     num_params = 0
@@ -171,12 +175,10 @@ def print_net(network):
 if __name__ == "__main__":
     start_epoch = 1
     max_num_epochs = 6
-    exp_dir = os.path.join('tfboard', 'exp_len14_sgd')
+    exp_dir = os.path.join('tfboard', 'exp_len8_sgd_1en3')
     if not os.path.exists(exp_dir):
         os.makedirs(exp_dir)
     writer = SummaryWriter(exp_dir)
-
-    
 
     Best_results = dict()
     Best_results['def_loss'] = 1000000.0
@@ -189,23 +191,25 @@ if __name__ == "__main__":
     Best_results['epoch_pro_accs'] = -1
 
 
-    TRAIN_DATA_PATH = 'tasks/reverse_polish/data/train.pik'
+    TRAIN_DATA_PATH = 'tasks/reverse_polish/data/train_8.pik'
     with open(TRAIN_DATA_PATH, 'rb', ) as f:
         train_data = pickle.load(f)
 
-    EVAL_DATA_PATH = 'tasks/reverse_polish/data/eval.pik'
+    EVAL_DATA_PATH = 'tasks/reverse_polish/data/eval_8.pik'
     with open(EVAL_DATA_PATH, 'rb', ) as f:
         eval_data = pickle.load(f)
 
-    TEST_DATA_PATH = 'tasks/reverse_polish/data/test.pik'
+    TEST_DATA_PATH = 'tasks/reverse_polish/data/test_8.pik'
     with open(TEST_DATA_PATH, 'rb', ) as f:
         test_data = pickle.load(f)
 
     func_core = RevPolishCore().to(device)
     npi       = NPI(func_core, CONFIG).to(device)
 
+    print_net(npi)
+
     # optimizer = torch.optim.Adam(npi.parameters(), lr=1e-4)
-    optimizer = torch.optim.SGD(npi.parameters(), lr=1e-4)
+    optimizer = torch.optim.SGD(npi.parameters(), lr=1e-3)
     lr_schedulers = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=max_num_epochs)
 
     for epoch in range(start_epoch, max_num_epochs+1):
